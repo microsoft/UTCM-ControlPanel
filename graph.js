@@ -301,55 +301,6 @@ async function getSnapshotErrors(jobId) {
   }
 }
 
-async function startMonitor(monitorId) {
-
-  try {
-    let responseDrifts = await graphClient
-      .api("https://graph.microsoft.com/beta/admin/configurationManagement/configurationMonitors('" + monitorId + "')")
-      .delete();
-
-    let responseMonitors = await graphClient
-      .api('/admin/configurationManagement/configurationMonitors')
-      // Set the Prefer=outlook.timezone header so date/times are in
-      // user's preferred time zone
-      .version('beta')
-      //.header("Prefer", `outlook.timezone="${user.mailboxSettings.timeZone}"`)
-      // Add the startDateTime and endDateTime query parameters
-      //.query({ startDateTime: startOfWeek.format(), endDateTime: endOfWeek.format() })
-      // Select just the fields we are interested in
-      .select('displayName,id,status,createdBy')
-      // Sort the results by start, earliest first
-      //.orderby('start/dateTime')
-      // Maximum 50 events in response
-      .top(10)
-      .get();
-
-    let responseMonitorRuns = await graphClient
-      .api('/admin/configurationManagement/configurationMonitoringResults')
-      // Set the Prefer=outlook.timezone header so date/times are in
-      // user's preferred time zone
-      .version('beta')
-      //.header("Prefer", `outlook.timezone="${user.mailboxSettings.timeZone}"`)
-      // Add the startDateTime and endDateTime query parameters
-      //.query({ startDateTime: startOfWeek.format(), endDateTime: endOfWeek.format() })
-      // Select just the fields we are interested in
-      .select('id,runStatus,driftsCount,monitorId, runInitiationDateTime, runCompletionDateTime, errorDetails')
-      // Sort the results by start, earliest first
-      //.orderby('runInitiationDateTime')
-      // Maximum 50 events in response
-      .top(10)
-      .get();
-
-
-    updatePage(Views.monitors, responseMonitors.value, responseMonitorRuns.value);
-  } catch (error) {
-    updatePage(Views.error, {
-      message: 'Error getting events',
-      debug: error
-    });
-  }
-}
-
 async function deleteMonitor(monitorId) {
 
   try {
@@ -357,41 +308,7 @@ async function deleteMonitor(monitorId) {
       .api("https://graph.microsoft.com/beta/admin/configurationManagement/configurationMonitors('" + monitorId + "')")
       .delete();
 
-    let responseMonitors = await graphClient
-      .api('/admin/configurationManagement/configurationMonitors')
-      // Set the Prefer=outlook.timezone header so date/times are in
-      // user's preferred time zone
-      .version('beta')
-      //.header("Prefer", `outlook.timezone="${user.mailboxSettings.timeZone}"`)
-      // Add the startDateTime and endDateTime query parameters
-      //.query({ startDateTime: startOfWeek.format(), endDateTime: endOfWeek.format() })
-      // Select just the fields we are interested in
-      .select('displayName,id,status,createdBy')
-      // Sort the results by start, earliest first
-      //.orderby('start/dateTime')
-      // Maximum 50 events in response
-      .orderby('runInitiationDateTime desc')
-      .top(100)
-      .get();
-
-    let responseMonitorRuns = await graphClient
-      .api('/admin/configurationManagement/configurationMonitoringResults')
-      // Set the Prefer=outlook.timezone header so date/times are in
-      // user's preferred time zone
-      .version('beta')
-      //.header("Prefer", `outlook.timezone="${user.mailboxSettings.timeZone}"`)
-      // Add the startDateTime and endDateTime query parameters
-      //.query({ startDateTime: startOfWeek.format(), endDateTime: endOfWeek.format() })
-      // Select just the fields we are interested in
-      .select('id,runStatus,driftsCount,monitorId, runInitiationDateTime,runCompletionDateTime')
-      // Sort the results by start, earliest first
-      //.orderby('runInitiationDateTime')
-      // Maximum 50 events in response
-      .top(10)
-      .get();
-
-
-    updatePage(Views.monitors, responseMonitors.value, responseMonitorRuns.value);
+      getMonitors();
   } catch (error) {
     updatePage(Views.error, {
       message: 'Error getting events',
