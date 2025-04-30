@@ -1,0 +1,31 @@
+body {
+    padding-top: 70px;
+  }
+
+.boldheader {
+  font-weight: bold;
+  background-color:#eee !important;
+}
+
+.subValue {
+  padding-left:20px !important;
+}
+
+.subValueGreen {
+  padding-left:20px !important;
+  background-color:palegreen !important
+}
+
+.subValueRed {
+  padding-left:20px !important;
+  background-color:lightcoral !important
+}
+
+a {
+  cursor: pointer !important;
+}
+
+.btn-create
+{
+  background-color:darkseagreen !important;
+}
