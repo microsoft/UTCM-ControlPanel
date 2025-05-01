@@ -212,35 +212,25 @@ async function getDrifts(monitorId) {
 
 async function getAllDrifts() {
 
-  try {
-    // GET /me/calendarview?startDateTime=''&endDateTime=''
-    // &$select=subject,organizer,start,end
-    // &$orderby=start/dateTime
-    // &$top=50
-    let responseDrifts = await graphClient
-      .api("https://graph.microsoft.com/beta/admin/configurationManagement/configurationDrifts")
-      // Set the Prefer=outlook.timezone header so date/times are in
-      // user's preferred time zone
-      .version('beta')
-      //.header("Prefer", `outlook.timezone="${user.mailboxSettings.timeZone}"`)
-      // Add the startDateTime and endDateTime query parameters
-      //.query({ startDateTime: startOfWeek.format(), endDateTime: endOfWeek.format() })
-      // Select just the fields we are interested in
-      .select('status,tenantId')
-      // Sort the results by start, earliest first
-      //.orderby('start/dateTime')
-      // Maximum 50 events in response
-      .top(1)
-      .get();
-
-
-    updatePage(Views.home, responseDrifts.value);
-  } catch (error) {
-    updatePage(Views.error, {
-      message: 'Error getting events',
-      debug: error
-    });
-  }
+  // GET /me/calendarview?startDateTime=''&endDateTime=''
+  // &$select=subject,organizer,start,end
+  // &$orderby=start/dateTime
+  // &$top=50
+  return graphClient
+    .api("https://graph.microsoft.com/beta/admin/configurationManagement/configurationDrifts")
+    // Set the Prefer=outlook.timezone header so date/times are in
+    // user's preferred time zone
+    .version('beta')
+    //.header("Prefer", `outlook.timezone="${user.mailboxSettings.timeZone}"`)
+    // Add the startDateTime and endDateTime query parameters
+    //.query({ startDateTime: startOfWeek.format(), endDateTime: endOfWeek.format() })
+    // Select just the fields we are interested in
+    .select('status,tenantId')
+    // Sort the results by start, earliest first
+    //.orderby('start/dateTime')
+    // Maximum 50 events in response
+    .top(1)
+    .get();
 }
 
 async function getSnapshotJobs() {

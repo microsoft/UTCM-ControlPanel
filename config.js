@@ -4,7 +4,7 @@
 const msalConfig = {
   auth: {
     clientId: '006ad752-04b5-4292-9a9e-8d08668edf31',
-    redirectUri: 'http://localhost:8080'
+    redirectUri: 'https://microsoft.github.io/UTCM-ControlPanel/'
   }
 };
 
