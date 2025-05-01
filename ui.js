@@ -114,9 +114,9 @@ function showWelcomeMessage(user, drifts) {
   else
   {
     let spanDrifts = createElement('span')
-    if(null != drifts && drifts.length > 0)
+    if(null != drifts && drifts.value.length > 0)
     {
-      spanDrifts.innerHTML = "<span id='" + drifts[0].tenantId + "'><img src='red.jpg' width='20' alt='" + drifts.length.tostring() + " drifts detected' />&nbsp;Tenant " + drifts[0].tenantId + " has <strong>" +drifts.length.tostring() + " Active Drifts</strong></span>"
+      spanDrifts.innerHTML = "<span id='" + drifts.value[0].tenantId + "'><img src='red.jpg' width='20' alt='" + drifts.value.length.tostring() + " drifts detected' />&nbsp;Tenant " + drifts.value[0].tenantId + " has <strong>" +drifts.value.length.tostring() + " Active Drifts</strong></span>"
     }
     else
     {
