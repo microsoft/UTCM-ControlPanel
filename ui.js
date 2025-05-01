@@ -220,6 +220,7 @@ function updatePage(view, data, data2) {
     view = Views.home;
   }
   const user = JSON.parse(sessionStorage.getItem('graphUser'));
+  const drifts = JSON.parse(sessionStorage.getItem('drifts'));
 
   showAccountNav(user);
   showAuthenticatedNav(user, view);
@@ -229,7 +230,7 @@ function updatePage(view, data, data2) {
       showError(data);
       break;
     case Views.home:
-      showWelcomeMessage(user, data);
+      showWelcomeMessage(user, drifts);
       break;
     case Views.monitors:
       showMonitors(data, data2);

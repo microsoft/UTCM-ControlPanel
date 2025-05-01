@@ -31,8 +31,10 @@ async function signIn() {
   
       // Get the user's profile from Graph
       const user = await getUser();
+      const drifts = await getAllDrifts();
       // Save the profile in session
       sessionStorage.setItem('graphUser', JSON.stringify(user));
+      sessionStorage.setItem('drifts', JSON.stringify(drifts));
       updatePage(Views.home);
     } catch (error) {
       console.log(error);
