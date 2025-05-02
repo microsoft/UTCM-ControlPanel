@@ -86,11 +86,10 @@ function showAccountNav(user) {
     var signInButton = createElement('button', 'btn btn-link nav-link', 'Sign in');
     signInButton.setAttribute('onclick', 'signIn();');
     accountNav.appendChild(signInButton);
-
-    var termsLink = createElement('a', 'btn btn-link nav-link', 'Terms & Conditions');
-    termsLink.setAttribute('href','https://aka.ms/M365CCPTandCs');
-    accountNav.appendChild(termsLink);
   }
+  var termsLink = createElement('a', 'btn btn-link nav-link', 'Terms & Conditions');
+  termsLink.setAttribute('href','https://aka.ms/M365CCPTandCs');
+  accountNav.appendChild(termsLink);
 }
 
 function showWelcomeMessage(user, drifts) {
