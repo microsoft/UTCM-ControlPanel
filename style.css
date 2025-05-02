@@ -29,3 +29,8 @@ a {
 {
   background-color:darkseagreen !important;
 }
+
+.btn-link
+{
+  float:left !important;
+}
