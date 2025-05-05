@@ -522,7 +522,7 @@ function showNewSnapshotForm() {
   resourceDDL.setAttribute('multiple', "true");
   resourceDDL.setAttribute('id', 'mon-resources');
   resourceDDL.setAttribute('name', 'mon-resources');
-  resourceDDL.style.height = "200px";
+  resourceDDL.style.height = "500px";
   resourceDDL.style.width = "100%";
   for(const resource of allResources.sort())
   {
