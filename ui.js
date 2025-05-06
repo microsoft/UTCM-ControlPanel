@@ -603,7 +603,7 @@ function showNewMonitorForm() {
 
 function showGraphBanner(uri)
 {
-  let divGraphBanner = document.createElement.apply('div', graph-banner);
+  let divGraphBanner = document.createElement('div', graph-banner);
   divGraphBanner.innerHtml = uri;
   mainContainer.appendChild(divGraphBanner);
 }

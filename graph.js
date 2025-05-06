@@ -234,8 +234,9 @@ async function getAllDrifts() {
 async function getSnapshotJobs() {
 
   try {
+    var uri = "https://graph.microsoft.com/beta/admin/configurationManagement/configurationSnapshotJobs";
     let responseJobs = await graphClient
-      .api("https://graph.microsoft.com/beta/admin/configurationManagement/configurationSnapshotJobs")
+      .api(uri)
       .version('beta')
       .select('id,displayName,description,status,createdDateTime,completedDateTime,resourceLocation,resources,createdBy,errorDetails')
       .orderby('createdDateTime desc')
