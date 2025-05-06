@@ -237,7 +237,6 @@ async function getSnapshotJobs() {
     let responseJobs = await graphClient
       .api("https://graph.microsoft.com/beta/admin/configurationManagement/configurationSnapshotJobs")
       .version('beta')
-      .responseType('raw')
       .select('id,displayName,description,status,createdDateTime,completedDateTime,resourceLocation,resources,createdBy,errorDetails')
       .orderby('createdDateTime desc')
       .get();
