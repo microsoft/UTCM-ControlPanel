@@ -178,7 +178,7 @@ async function getDrifts(monitorId) {
       .get();
 
 
-    updatePage(Views.drifts, responseDrifts.value, uri);
+    updatePage(Views.drifts, responseDrifts.value, null, uri);
   } catch (error) {
     updatePage(Views.error, {
       message: 'Error getting events',
@@ -188,24 +188,10 @@ async function getDrifts(monitorId) {
 }
 
 async function getAllDrifts() {
-
-  // GET /me/calendarview?startDateTime=''&endDateTime=''
-  // &$select=subject,organizer,start,end
-  // &$orderby=start/dateTime
-  // &$top=50
   return graphClient
     .api("https://graph.microsoft.com/beta/admin/configurationManagement/configurationDrifts")
-    // Set the Prefer=outlook.timezone header so date/times are in
-    // user's preferred time zone
     .version('beta')
-    //.header("Prefer", `outlook.timezone="${user.mailboxSettings.timeZone}"`)
-    // Add the startDateTime and endDateTime query parameters
-    //.query({ startDateTime: startOfWeek.format(), endDateTime: endOfWeek.format() })
-    // Select just the fields we are interested in
     .select('status,tenantId')
-    // Sort the results by start, earliest first
-    //.orderby('start/dateTime')
-    // Maximum 50 events in response
     .top(1)
     .get();
 }
@@ -221,7 +207,7 @@ async function getSnapshotJobs() {
       .orderby('createdDateTime desc')
       .get();
 
-    updatePage(Views.snapshots, responseJobs.value, uri);
+    updatePage(Views.snapshots, responseJobs.value, null, uri);
   } catch (error) {
     updatePage(Views.error, {
       message: 'Error getting Snapshot Jobs',
@@ -240,7 +226,7 @@ async function getSnapshot(id) {
       .version('beta')
       .get();
 
-    updatePage(Views.snapshotInfo, snapshot, uri);
+    updatePage(Views.snapshotInfo, snapshot, null, uri);
   } catch (error) {
     updatePage(Views.error, {
       message: 'Error getting Snapshot Jobs',
@@ -260,7 +246,7 @@ async function getSnapshotErrors(jobId) {
       .version('beta')
       .get();
 
-    updatePage(Views.snapshotErrors, errors, uri);
+    updatePage(Views.snapshotErrors, errors, null, uri);
   } catch (error) {
     updatePage(Views.error, {
       message: 'Error getting Snapshot Errors',
