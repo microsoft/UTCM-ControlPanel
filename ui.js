@@ -567,8 +567,8 @@ function showNewMonitorForm() {
 
 function showGraphBanner(uri)
 {
-  let divGraphBanner = document.createElement('div', 'graph-banner');
-  divGraphBanner.innerHtml = uri;
+  let divGraphBanner = document.createElement('div', 'graph-banner', uri);
+  divGraphBanner.id = "divGraphBanner";
   mainContainer.appendChild(divGraphBanner);
 }
 
