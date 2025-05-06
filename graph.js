@@ -241,15 +241,6 @@ async function getSnapshotJobs() {
       .orderby('createdDateTime desc')
       .get();
 
-    let responseRAW = await graphClient
-      .api("https://graph.microsoft.com/beta/admin/configurationManagement/configurationSnapshotJobs")
-      .version('beta')
-      .responseType(responseType.RAW)
-      .select('id,displayName,description,status,createdDateTime,completedDateTime,resourceLocation,resources,createdBy,errorDetails')
-      .orderby('createdDateTime desc')
-      .get();
-
-
     updatePage(Views.snapshots, responseJobs.value);
   } catch (error) {
     updatePage(Views.error, {

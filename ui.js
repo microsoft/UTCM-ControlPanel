@@ -617,7 +617,8 @@ function showSnapshot(data) {
   contentInput.setAttribute('id', 'snap-content');
   contentInput.setAttribute('type', 'text');
   contentInput.setAttribute('rows', '30');
-  contentInput.innerHTML = JSON.stringify(data, null, 4);
+  var snapshotContent = JSON.stringify(data, null, 4);
+  contentInput.innerHTML = snapshotContent;
   contentGroup.appendChild(contentInput);
 
   mainContainer.innerHTML = '';
