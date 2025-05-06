@@ -149,7 +149,6 @@ async function getMonitors() {
       // Sort the results by start, earliest first
       .orderby('displayName')
       // Maximum 50 events in response
-      .top(10)
       .get();
 
     let responseMonitorRuns = await graphClient
@@ -197,7 +196,6 @@ async function getDrifts(monitorId) {
       // Sort the results by start, earliest first
       //.orderby('start/dateTime')
       // Maximum 50 events in response
-      .top(10)
       .get();
 
 
@@ -241,7 +239,6 @@ async function getSnapshotJobs() {
       .version('beta')
       .select('id,displayName,description,status,createdDateTime,completedDateTime,resourceLocation,resources,createdBy,errorDetails')
       .orderby('createdDateTime desc')
-      .top(10)
       .get();
 
 
