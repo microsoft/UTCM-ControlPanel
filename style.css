@@ -30,7 +30,15 @@ a {
   background-color:darkseagreen !important;
 }
 
-.nav-link
-{
+.nav-link {
   float:left !important;
+}
+
+.graph-banner {
+    position: fixed; //fixed is absolute to a browser
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
 }

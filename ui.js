@@ -601,6 +601,13 @@ function showNewMonitorForm() {
   mainContainer.appendChild(form);
 }
 
+function showGraphBanner(uri)
+{
+  let divGraphBanner = document.createElement.apply('div', graph-banner);
+  divGraphBanner.innerHtml = uri;
+  mainContainer.appendChild(divGraphBanner);
+}
+
 function showSnapshot(data) {
 
   let divCountResources = document.createElement('div')
@@ -617,10 +624,12 @@ function showSnapshot(data) {
   contentInput.setAttribute('id', 'snap-content');
   contentInput.setAttribute('type', 'text');
   contentInput.setAttribute('rows', '30');
+
+  showGraphBanner(data['@odata.context']);
+
   delete data.id;
   delete data['@odata.context'];
   var snapshotContent = JSON.stringify(data, null, 4);
-
   contentInput.innerHTML = snapshotContent;
   contentGroup.appendChild(contentInput);
 
