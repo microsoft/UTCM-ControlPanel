@@ -182,43 +182,7 @@ function updatePage(view, data) {
   }
 }
 
-// <updatePageSnippet>
-function updatePage(view, data) {
-  if (!view) {
-    view = Views.home;
-  }
-
-  const user = JSON.parse(sessionStorage.getItem('graphUser'));
-
-  showAccountNav(user);
-  showAuthenticatedNav(user, view);
-
-  switch (view) {
-    case Views.error:
-      showError(data);
-      break;
-    case Views.home:
-      showWelcomeMessage(user, data);
-      break;
-    case Views.monitors:
-      showMonitors(data);
-      break;
-    case Views.drifts:
-      showDrifts(data);
-      break;
-    case Views.snapshots:
-      showSnapshotJobs(data);
-      break;
-    case Views.snapshotInfo:
-      showSnapshot(data);
-      break;
-    case Views.snapshotErrors:
-      showSnapshotErrors(data);
-      break;
-  }
-}
-
-function updatePage(view, data, data2) {
+function updatePage(view, data, data2, graphURI) {
   if (!view) {
     view = Views.home;
   }
@@ -236,19 +200,19 @@ function updatePage(view, data, data2) {
       showWelcomeMessage(user, drifts);
       break;
     case Views.monitors:
-      showMonitors(data, data2);
+      showMonitors(data, data2, graphURI);
       break;
     case Views.drifts:
-      showDrifts(data);
+      showDrifts(data, graphURI);
       break;
     case Views.snapshots:
-      showSnapshotJobs(data);
+      showSnapshotJobs(data, graphURI);
       break;
     case Views.snapshotInfo:
-      showSnapshot(data);
+      showSnapshot(data, graphURI);
       break;
     case Views.snapshotErrors:
-      showSnapshotErrors(data);
+      showSnapshotErrors(data, graphURI);
       break;
   }
 }
@@ -608,7 +572,7 @@ function showGraphBanner(uri)
   mainContainer.appendChild(divGraphBanner);
 }
 
-function showSnapshot(data) {
+function showSnapshot(data, graphURI) {
 
   let divCountResources = document.createElement('div')
   divCountResources.innerHTML = "<strong>This snapshot contains:</strong> " + data.resources.length + " resources";
@@ -625,8 +589,6 @@ function showSnapshot(data) {
   contentInput.setAttribute('type', 'text');
   contentInput.setAttribute('rows', '30');
 
-  showGraphBanner(data['@odata.context']);
-
   delete data.id;
   delete data['@odata.context'];
   var snapshotContent = JSON.stringify(data, null, 4);
@@ -634,7 +596,8 @@ function showSnapshot(data) {
   contentGroup.appendChild(contentInput);
 
   mainContainer.innerHTML = '';
-  mainContainer.appendChild(form);
+  mainContainer.appendChild(form);  
+  showGraphBanner(graphURI);
 }
 
 function showSnapshotErrors(snapshotErrors) {

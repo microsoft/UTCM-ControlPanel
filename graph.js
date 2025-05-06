@@ -132,42 +132,24 @@ async function createNewSnapshot() {
 
 async function getMonitors() {
   try {
-    // GET /me/calendarview?startDateTime=''&endDateTime=''
-    // &$select=subject,organizer,start,end
-    // &$orderby=start/dateTime
-    // &$top=50
+    var uri = '/admin/configurationManagement/configurationMonitors';
     let responseMonitors = await graphClient
-      .api('/admin/configurationManagement/configurationMonitors')
-      // Set the Prefer=outlook.timezone header so date/times are in
-      // user's preferred time zone
+      .api(uri)
       .version('beta')
-      //.header("Prefer", `outlook.timezone="${user.mailboxSettings.timeZone}"`)
-      // Add the startDateTime and endDateTime query parameters
-      //.query({ startDateTime: startOfWeek.format(), endDateTime: endOfWeek.format() })
-      // Select just the fields we are interested in
       .select('displayName,id,status,createdBy')
-      // Sort the results by start, earliest first
       .orderby('displayName')
-      // Maximum 50 events in response
       .get();
 
     let responseMonitorRuns = await graphClient
       .api('/admin/configurationManagement/configurationMonitoringResults')
-      // Set the Prefer=outlook.timezone header so date/times are in
-      // user's preferred time zone
       .version('beta')
-      //.header("Prefer", `outlook.timezone="${user.mailboxSettings.timeZone}"`)
-      // Add the startDateTime and endDateTime query parameters
-      //.query({ startDateTime: startOfWeek.format(), endDateTime: endOfWeek.format() })
-      // Select just the fields we are interested in
       .select('id,runStatus,driftsCount,monitorId, runInitiationDateTime, runCompletionDateTime')
-      // Sort the results by start, earliest first
       .orderby('runInitiationDateTime desc')
       .top(100)
       .get();
 
 
-    updatePage(Views.monitors, responseMonitors.value, responseMonitorRuns.value);
+    updatePage(Views.monitors, responseMonitors.value, responseMonitorRuns.value, uri);
   } catch (error) {
     updatePage(Views.error, {
       message: 'Error getting events',
@@ -179,12 +161,9 @@ async function getMonitors() {
 async function getDrifts(monitorId) {
 
   try {
-    // GET /me/calendarview?startDateTime=''&endDateTime=''
-    // &$select=subject,organizer,start,end
-    // &$orderby=start/dateTime
-    // &$top=50
+    var uri = "https://graph.microsoft.com/beta/admin/configurationManagement/configurationDrifts?filter=MonitorId eq '" + monitorId + "'"
     let responseDrifts = await graphClient
-      .api("https://graph.microsoft.com/beta/admin/configurationManagement/configurationDrifts?filter=MonitorId eq '" + monitorId + "'")
+      .api(uri)
       // Set the Prefer=outlook.timezone header so date/times are in
       // user's preferred time zone
       .version('beta')
@@ -199,7 +178,7 @@ async function getDrifts(monitorId) {
       .get();
 
 
-    updatePage(Views.drifts, responseDrifts.value);
+    updatePage(Views.drifts, responseDrifts.value, uri);
   } catch (error) {
     updatePage(Views.error, {
       message: 'Error getting events',
@@ -242,7 +221,7 @@ async function getSnapshotJobs() {
       .orderby('createdDateTime desc')
       .get();
 
-    updatePage(Views.snapshots, responseJobs.value);
+    updatePage(Views.snapshots, responseJobs.value, uri);
   } catch (error) {
     updatePage(Views.error, {
       message: 'Error getting Snapshot Jobs',
@@ -255,12 +234,13 @@ async function getSnapshot(id) {
 
   try
   {
+    var uri = "https://graph.microsoft.com/beta/admin/configurationManagement/configurationSnapshots('" + id + "')";
     let snapshot = await graphClient
-      .api("https://graph.microsoft.com/beta/admin/configurationManagement/configurationSnapshots('" + id + "')")
+      .api(uri)
       .version('beta')
       .get();
 
-    updatePage(Views.snapshotInfo, snapshot);
+    updatePage(Views.snapshotInfo, snapshot, uri);
   } catch (error) {
     updatePage(Views.error, {
       message: 'Error getting Snapshot Jobs',
@@ -273,13 +253,14 @@ async function getSnapshotErrors(jobId) {
 
   try
   {
+    var uri = "https://graph.microsoft.com/beta/admin/configurationManagement/configurationSnapshotJobs('" + jobId + "')"
     let errors = await graphClient
-      .api("https://graph.microsoft.com/beta/admin/configurationManagement/configurationSnapshotJobs('" + jobId + "')")
+      .api(uri)
       .select("errorDetails")
       .version('beta')
       .get();
 
-    updatePage(Views.snapshotErrors, errors);
+    updatePage(Views.snapshotErrors, errors, uri);
   } catch (error) {
     updatePage(Views.error, {
       message: 'Error getting Snapshot Errors',
