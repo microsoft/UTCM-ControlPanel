@@ -510,7 +510,6 @@ function showNewSnapshotForm() {
         "microsoft.securityandcompliance.fileplanpropertydepartment",
         "microsoft.securityandcompliance.fileplanpropertyreferenceid",
         "microsoft.securityandcompliance.fileplanpropertysubcategory",
-        "microsoft.securityandcompliance.labelpolicy",
         "microsoft.securityandcompliance.protectionalert",
         "microsoft.securityandcompliance.retentioncompliancepolicy",
         "microsoft.securityandcompliance.retentioncompliancerule",
