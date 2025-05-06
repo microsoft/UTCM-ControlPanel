@@ -569,6 +569,7 @@ function showGraphBanner(uri)
 {
   let divGraphBanner = document.createElement('div', 'graph-banner', uri);
   divGraphBanner.id = "divGraphBanner";
+  divGraphBanner.innerHTML = "<strong>Associated Graph call:</strong> " + uri;
   mainContainer.appendChild(divGraphBanner);
 }
 
