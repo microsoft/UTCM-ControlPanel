@@ -617,7 +617,10 @@ function showSnapshot(data) {
   contentInput.setAttribute('id', 'snap-content');
   contentInput.setAttribute('type', 'text');
   contentInput.setAttribute('rows', '30');
+  delete data.id;
+  delete data['@odata.context'];
   var snapshotContent = JSON.stringify(data, null, 4);
+
   contentInput.innerHTML = snapshotContent;
   contentGroup.appendChild(contentInput);
 
