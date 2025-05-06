@@ -597,11 +597,11 @@ function showSnapshot(data, graphURI) {
   contentGroup.appendChild(contentInput);
 
   mainContainer.innerHTML = '';
-  mainContainer.appendChild(form);  
+  mainContainer.appendChild(form);
   showGraphBanner(graphURI);
 }
 
-function showSnapshotErrors(snapshotErrors) {
+function showSnapshotErrors(snapshotErrors, graphURI) {
 
   let div = document.createElement('div');
   div.appendChild(createElement('h1', 'mb-3', 'Snapshot Errors'));
@@ -636,9 +636,10 @@ function showSnapshotErrors(snapshotErrors) {
 
   mainContainer.innerHTML = '';
   mainContainer.appendChild(div);
+  showGraphBanner(graphURI);
 }
 
-function showSnapshotJobs(snapshotJobs) {
+function showSnapshotJobs(snapshotJobs, graphURI) {
 
   let div = document.createElement('div');
 
@@ -785,9 +786,10 @@ function showSnapshotJobs(snapshotJobs) {
 
   mainContainer.innerHTML = '';
   mainContainer.appendChild(div);
+  showGraphBanner(graphURI);
 }
 
-function showDrifts(drifts) {
+function showDrifts(drifts, graphURI) {
   let div = document.createElement('div');
   let tableDrifts = createElement('table', 'table');
   div.appendChild(tableDrifts);
@@ -865,9 +867,10 @@ function showDrifts(drifts) {
 
   mainContainer.innerHTML = '';
   mainContainer.appendChild(div);
+  showGraphBanner(graphURI);
 }
 
-function showMonitors(monitors, runs) {
+function showMonitors(monitors, runs, graphURI) {
   let div = document.createElement('div');
 
   div.appendChild(createElement('h1', 'mb-3', 'Monitors'));
@@ -999,6 +1002,7 @@ function showMonitors(monitors, runs) {
 
   mainContainer.innerHTML = '';
   mainContainer.appendChild(div);
+  showGraphBanner(graphURI);
 }
 
 function convertTimeZone(date, timeZone) {

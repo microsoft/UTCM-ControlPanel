@@ -35,10 +35,11 @@ a {
 }
 
 .graph-banner {
-    position: fixed; //fixed is absolute to a browser
+    position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
+    background-color:aliceblue !important;
+    border-radius:30px;
+    padding-left:15px;
 }
