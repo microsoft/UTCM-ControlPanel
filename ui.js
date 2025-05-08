@@ -958,7 +958,7 @@ function showMonitors(monitors, runs, graphURI) {
 
             var diff = completed.getTime() - created.getTime();
             var seconds = Math.floor(diff / (1000));
-            timeDiff = diff + "s";
+            timeDiff = seconds + "s";
           }
 
           let execTimeCell = createElement('td', null, timeDiff);
