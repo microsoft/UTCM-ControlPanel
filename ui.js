@@ -110,13 +110,14 @@ function showWelcomeMessage(user, drifts) {
   else
   {
     let spanDrifts = createElement('span')
+    spanDrifts.innerHTML = "<p>By using this demo application you consent to the <a href='https://aka.ms/M365CCPTandCs'>Terms & Conditions</a> associated with its use.</p>"
     if(null != drifts && drifts.value.length > 0)
     {
-      spanDrifts.innerHTML = "<span id='" + drifts.value[0].tenantId + "'><img src='red.png' width='20' alt='" + drifts.value.length + " drifts detected' />&nbsp;Tenant " + drifts.value[0].tenantId + " has <strong>" + drifts.value.length + " Active Drifts</strong></span>"
+      spanDrifts.innerHTML += "<span id='" + drifts.value[0].tenantId + "'><img src='red.png' width='20' alt='" + drifts.value.length + " drifts detected' />&nbsp;Tenant " + drifts.value[0].tenantId + " has <strong>" + drifts.value.length + " Active Drifts</strong></span>"
     }
     else
     {
-      spanDrifts.innerHTML = "<span id='NoDrift'><img src='green.png' width='20' alt='No drift detected' />&nbsp;No active drifts detected for the current tenant.</span>"
+      spanDrifts.innerHTML += "<span id='NoDrift'><img src='green.png' width='20' alt='No drift detected' />&nbsp;No active drifts detected for the current tenant.</span>"
     }
     container.appendChild(spanDrifts);
   }
