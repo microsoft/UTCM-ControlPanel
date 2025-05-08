@@ -556,13 +556,14 @@ function showNewMonitorForm() {
 
   mainContainer.innerHTML = '';
   mainContainer.appendChild(form);
+  showGraphBanner("https://graph.microsoft.com/beta/admin/configurationManagement/configurationMonitors/","POST")
 }
 
-function showGraphBanner(uri)
+function showGraphBanner(uri, method)
 {
   let divGraphBanner = document.createElement('div', 'graph-banner', uri);
   divGraphBanner.id = "divGraphBanner";
-  divGraphBanner.innerHTML = "<strong>Associated Graph call:</strong> " + uri;
+  divGraphBanner.innerHTML = "<strong>Associated Graph call: </strong> " + method + " " + uri;
   mainContainer.appendChild(divGraphBanner);
 }
 
@@ -994,7 +995,7 @@ function showMonitors(monitors, runs, graphURI) {
 
   mainContainer.innerHTML = '';
   mainContainer.appendChild(div);
-  showGraphBanner(graphURI);
+  showGraphBanner(graphURI, "GET");
 }
 
 function convertTimeZone(date, timeZone) {

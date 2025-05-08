@@ -17,9 +17,7 @@ function initializeGraphClient(msalClient, account, scopes)
   // Initialize the Graph client
   graphClient = MicrosoftGraph.Client.initWithMiddleware({authProvider});
 }
-// </graphInitSnippet>
 
-// <getUserSnippet>
 async function getUser() {
     return graphClient
       .api('/me')
@@ -27,12 +25,7 @@ async function getUser() {
       .select('id,displayName,mail,userPrincipalName')
       .get();
   }
-  // </getUserSnippet>
 
-  // <getEventsSnippet>
-// </getEventsSnippet>
-
-// <createEventSnippet>
 async function createNewMonitor() {
   const user = JSON.parse(sessionStorage.getItem('graphUser'));
 
@@ -128,7 +121,7 @@ async function createNewSnapshot() {
     });
   }
 }
-// </createEventSnippet>
+
 
 async function getMonitors() {
   try {
@@ -164,17 +157,8 @@ async function getDrifts(monitorId) {
     var uri = "https://graph.microsoft.com/beta/admin/configurationManagement/configurationDrifts?filter=MonitorId eq '" + monitorId + "'"
     let responseDrifts = await graphClient
       .api(uri)
-      // Set the Prefer=outlook.timezone header so date/times are in
-      // user's preferred time zone
       .version('beta')
-      //.header("Prefer", `outlook.timezone="${user.mailboxSettings.timeZone}"`)
-      // Add the startDateTime and endDateTime query parameters
-      //.query({ startDateTime: startOfWeek.format(), endDateTime: endOfWeek.format() })
-      // Select just the fields we are interested in
       .select('id,resourceType,firstReportedDateTime,status,resourceInstanceIdentifier,driftedProperties')
-      // Sort the results by start, earliest first
-      //.orderby('start/dateTime')
-      // Maximum 50 events in response
       .get();
 
 
