@@ -968,7 +968,7 @@ function showMonitors(monitors, runs, graphURI) {
           let driftcell
           if (run.driftsCount > 0)
           {
-            driftcell = createElement('td', 'subValueRed', null);
+            driftcell = createElement('td');
             let driftLink = createElement('a', null, run.driftsCount + " Drift(s) Detected <img src='red.jpg' width='20' alt='" + run.driftsCount + " drifts detected' />")
             driftLink.setAttribute('onclick', 'getDrifts("' + monitor.id + '");');
             driftcell.innerHtml = "<img src='red.jpg' width='20' alt='" + run.driftsCount + " drifts detected' />&nbsp;<a onclick='getDrifts(\"" + monitor.id+ "\")'>" + run.driftsCount + " Drift(s) Detected</a>";
