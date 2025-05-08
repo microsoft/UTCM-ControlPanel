@@ -102,10 +102,6 @@ function showWelcomeMessage(user, drifts) {
   let heading = createElement('h1', null, 'UTCM - Control Panel');
   container.appendChild(heading);
 
-  let lead = createElement('p', 'lead',
-    'View monitors, drifts and snapshots in a central location.');
-    container.appendChild(lead);
-
   if (!user)
   {
     // Show a sign in button in the jumbotron
