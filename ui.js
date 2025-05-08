@@ -969,14 +969,12 @@ function showMonitors(monitors, runs, graphURI) {
           if (run.driftsCount > 0)
           {
             driftcell = createElement('td');
-            let driftLink = createElement('a', null, run.driftsCount + " Drift(s) Detected <img src='red.jpg' width='20' alt='" + run.driftsCount + " drifts detected' />")
-            driftLink.setAttribute('onclick', 'getDrifts("' + monitor.id + '");');
             driftcell.innerHtml = "<img src='red.jpg' width='20' alt='" + run.driftsCount + " drifts detected' />&nbsp;<a onclick='getDrifts(\"" + monitor.id+ "\")'>" + run.driftsCount + " Drift(s) Detected</a>";
           }
           else
           {
             driftcell = createElement('td');
-            driftcell.innerHTML = run.driftsCount + "<img src='green.png' width='20' alt='No drift detected' />&nbsp;Drift(s) Detected"
+            driftcell.innerHTML = "<img src='green.png' width='20' alt='No drift detected' />&nbsp;0 Drift(s) Detected"
           }
           runrow.appendChild(driftcell);
 
