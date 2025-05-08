@@ -125,7 +125,7 @@ async function createNewSnapshot() {
 
 async function getMonitors() {
   try {
-    var uri = '/admin/configurationManagement/configurationMonitors';
+    var uri = 'https://graph.microsoft.com/beta/admin/configurationManagement/configurationMonitors';
     let responseMonitors = await graphClient
       .api(uri)
       .version('beta')

@@ -592,7 +592,7 @@ function showSnapshot(data, graphURI) {
 
   mainContainer.innerHTML = '';
   mainContainer.appendChild(form);
-  showGraphBanner(graphURI);
+  showGraphBanner(graphURI, "GET");
 }
 
 function showSnapshotErrors(snapshotErrors, graphURI) {
@@ -630,7 +630,7 @@ function showSnapshotErrors(snapshotErrors, graphURI) {
 
   mainContainer.innerHTML = '';
   mainContainer.appendChild(div);
-  showGraphBanner(graphURI);
+  showGraphBanner(graphURI, "GET");
 }
 
 function showSnapshotJobs(snapshotJobs, graphURI) {
@@ -780,7 +780,7 @@ function showSnapshotJobs(snapshotJobs, graphURI) {
 
   mainContainer.innerHTML = '';
   mainContainer.appendChild(div);
-  showGraphBanner(graphURI);
+  showGraphBanner(graphURI, "GET");
 }
 
 function showDrifts(drifts, graphURI) {
@@ -861,7 +861,7 @@ function showDrifts(drifts, graphURI) {
 
   mainContainer.innerHTML = '';
   mainContainer.appendChild(div);
-  showGraphBanner(graphURI);
+  showGraphBanner(graphURI, "GET");
 }
 
 function showMonitors(monitors, runs, graphURI) {
@@ -969,13 +969,14 @@ function showMonitors(monitors, runs, graphURI) {
           if (run.driftsCount > 0)
           {
             driftcell = createElement('td', 'subValueRed', null);
-            let driftLink = createElement('a', null, run.driftsCount + " Drift(s) Detected")
+            let driftLink = createElement('a', null, run.driftsCount + " Drift(s) Detected <img src='red.jpg' width='20' alt='" + run.driftsCount + " drifts detected' />")
             driftLink.setAttribute('onclick', 'getDrifts("' + monitor.id + '");');
             driftcell.appendChild(driftLink);
           }
           else
           {
-            driftcell = createElement('td', 'subValueGreen', run.driftsCount + " Drift(s) Detected");
+            driftcell = createElement('td');
+            driftcell.innerHTML = run.driftsCount + " Drift(s) Detected <img src='green.png' width='20' alt='No drift detected' />"
           }
           runrow.appendChild(driftcell);
 
