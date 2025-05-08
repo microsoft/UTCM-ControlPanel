@@ -499,6 +499,7 @@ function showNewSnapshotForm() {
 
   mainContainer.innerHTML = '';
   mainContainer.appendChild(form);
+  showGraphBanner("https://graph.microsoft.com/beta/admin/configurationManagement/configurationSnapshots/createSnapshot", "POST");
 }
 
 function showNewMonitorForm() {
