@@ -104,13 +104,15 @@ function showWelcomeMessage(user, drifts) {
     // Show a sign in button in the jumbotron
     let signInButton = createElement('button', 'btn btn-primary btn-large',
       'Click here to sign in');
+    let spanText = createElement('span');
+    spanText.innerHTML = "<p>By using this demo application you consent to the <a href='https://aka.ms/M365CCPTandCs'>Terms & Conditions</a> associated with its use.</p>"
     signInButton.setAttribute('onclick', 'signIn();')
+    container.appendChild(spanText);
     container.appendChild(signInButton);
   }
   else
   {
     let spanDrifts = createElement('span')
-    spanDrifts.innerHTML = "<p>By using this demo application you consent to the <a href='https://aka.ms/M365CCPTandCs'>Terms & Conditions</a> associated with its use.</p>"
     if(null != drifts && drifts.value.length > 0)
     {
       spanDrifts.innerHTML += "<span id='" + drifts.value[0].tenantId + "'><img src='red.png' width='20' alt='" + drifts.value.length + " drifts detected' />&nbsp;Tenant " + drifts.value[0].tenantId + " has <strong>" + drifts.value.length + " Active Drifts</strong></span>"
