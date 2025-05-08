@@ -958,7 +958,6 @@ function showMonitors(monitors, runs, graphURI) {
 
             var diff = completed.getTime() - created.getTime();
             var seconds = Math.floor(diff / (1000));
-            diff -= seconds * (1000);
             timeDiff = diff + "s";
           }
 
