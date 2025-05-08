@@ -112,7 +112,7 @@ function showWelcomeMessage(user, drifts) {
     let spanDrifts = createElement('span')
     if(null != drifts && drifts.value.length > 0)
     {
-      spanDrifts.innerHTML = "<span id='" + drifts.value[0].tenantId + "'><img src='red.jpg' width='20' alt='" + drifts.value.length + " drifts detected' />&nbsp;Tenant " + drifts.value[0].tenantId + " has <strong>" + drifts.value.length + " Active Drifts</strong></span>"
+      spanDrifts.innerHTML = "<span id='" + drifts.value[0].tenantId + "'><img src='red.png' width='20' alt='" + drifts.value.length + " drifts detected' />&nbsp;Tenant " + drifts.value[0].tenantId + " has <strong>" + drifts.value.length + " Active Drifts</strong></span>"
     }
     else
     {
@@ -969,7 +969,7 @@ function showMonitors(monitors, runs, graphURI) {
           if (run.driftsCount > 0)
           {
             driftcell = createElement('td');
-            driftcell.innerHTML = "<img src='red.jpg' width='20' alt='" + run.driftsCount + " drifts detected' />&nbsp;<a onclick=\"getDrifts('" + monitor.id+ "')\">" + run.driftsCount + " Drift(s) Detected</a>";
+            driftcell.innerHTML = "<img src='red.png' width='20' alt='" + run.driftsCount + " drifts detected' />&nbsp;<a onclick=\"getDrifts('" + monitor.id+ "')\">" + run.driftsCount + " Drift(s) Detected</a>";
           }
           else
           {
