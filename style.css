@@ -34,6 +34,13 @@ a {
   float:left !important;
 }
 
+a.driftLink
+{
+  cursor:pointer !important;
+  color:blue !important;
+  text-decoration: underline !important;
+}
+
 #divGraphBanner {
     position: fixed;
     bottom: 0;
