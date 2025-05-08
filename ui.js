@@ -243,10 +243,8 @@ function showNewSnapshotForm() {
 
   var allResources = ["microsoft.exchange.accepteddomain",
         "microsoft.exchange.activesyncdeviceaccessrule",
-        "microsoft.exchange.addressbookpolicy",
         "microsoft.exchange.antiphishpolicy",
         "microsoft.exchange.antiphishrule",
-        "microsoft.exchange.applicationaccesspolicy",
         "microsoft.exchange.atppolicyforo365",
         "microsoft.exchange.authenticationpolicy",
         "microsoft.exchange.authenticationpolicyassignment",
