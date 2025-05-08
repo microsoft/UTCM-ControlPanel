@@ -99,9 +99,6 @@ function showWelcomeMessage(user, drifts) {
   let container = createElement('div', 'container-fluid py-5');
   jumbotron.appendChild(container);
 
-  let heading = createElement('h1', null, 'UTCM - Control Panel');
-  container.appendChild(heading);
-
   if (!user)
   {
     // Show a sign in button in the jumbotron
