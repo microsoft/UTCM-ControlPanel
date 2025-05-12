@@ -131,6 +131,7 @@ async function getMonitors() {
       .version('beta')
       .select('displayName,id,status,createdBy')
       .orderby('displayName')
+      .top(10)
       .get();
 
     let responseMonitorRuns = await graphClient
