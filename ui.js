@@ -570,6 +570,22 @@ function showGraphBanner(uri, method)
 function showReport()
 {
   content = document.getElementById('snap-content').innerHTML;
+  snapshot = JSON.parse(content);
+  htmlContent = ""
+  for (const resource of snapshot.resources)
+  {
+    htmlContent += "<table width='100%'>";
+    htmlContent += "<tr><th rowspan='" + resource.properties.length + "'><th colspan='2'>" + resource.displayName + "</th></tr>";
+    for (const property in resource.properties)
+    {
+      htmlContent += "<tr><td style='text-align:right;'>" + property + "</td><td></td></tr>";
+    }
+    htmlContent += "<tr><td>";
+    htmlContent += "</table>";
+  }
+  let report = document.createElement('div');
+  report.innerHTML = htmlContent;
+  mainContainer.appendChild(report);
 }
 
 function showSnapshot(data, graphURI) {
