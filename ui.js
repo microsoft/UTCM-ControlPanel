@@ -567,10 +567,18 @@ function showGraphBanner(uri, method)
   mainContainer.appendChild(divGraphBanner);
 }
 
+function showReport()
+{
+  alert(document.getElementById('snap-content').innerHTML);
+}
+
 function showSnapshot(data, graphURI) {
 
+  delete data.id;
+  delete data['@odata.context'];
+  var snapshotContent = JSON.stringify(data, null, 4);
   let divCountResources = document.createElement('div')
-  divCountResources.innerHTML = "<strong>This snapshot contains:</strong> " + data.resources.length + " resources";
+  divCountResources.innerHTML = "<strong>This snapshot contains:</strong> " + data.resources.length + " resources&nbsp;<a onclick='showReport();'><img src='/images/report.png' alt='Generate report' width='25px' /></a>";
   let form = document.createElement('form');
 
   let contentGroup = createElement('div', 'form-group mb-2');
@@ -584,9 +592,6 @@ function showSnapshot(data, graphURI) {
   contentInput.setAttribute('type', 'text');
   contentInput.setAttribute('rows', '30');
 
-  delete data.id;
-  delete data['@odata.context'];
-  var snapshotContent = JSON.stringify(data, null, 4);
   contentInput.innerHTML = snapshotContent;
   contentGroup.appendChild(contentInput);
 
