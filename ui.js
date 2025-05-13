@@ -60,7 +60,7 @@ function showAccountNav(user) {
 
     let userIcon = createElement('img', 'rounded-circle align-self-center me-2');
     userIcon.style.width = '32px';
-    userIcon.src = 'utcm.png';
+    userIcon.src = '/images/utcm.png';
     userIcon.alt = 'user';
     dropdown.appendChild(userIcon);
 
@@ -115,11 +115,11 @@ function showWelcomeMessage(user, drifts) {
     let spanDrifts = createElement('span')
     if(null != drifts && drifts.value.length > 0)
     {
-      spanDrifts.innerHTML += "<span id='" + drifts.value[0].tenantId + "'><img src='red.png' width='20' alt='" + drifts.value.length + " drifts detected' />&nbsp;Tenant " + drifts.value[0].tenantId + " has <strong>" + drifts.value.length + " Active Drifts</strong></span>"
+      spanDrifts.innerHTML += "<span id='" + drifts.value[0].tenantId + "'><img src='/images/red.png' width='20' alt='" + drifts.value.length + " drifts detected' />&nbsp;Tenant " + drifts.value[0].tenantId + " has <strong>" + drifts.value.length + " Active Drifts</strong></span>"
     }
     else
     {
-      spanDrifts.innerHTML += "<span id='NoDrift'><img src='green.png' width='20' alt='No drift detected' />&nbsp;No active drifts detected for the current tenant.</span>"
+      spanDrifts.innerHTML += "<span id='NoDrift'><img src='/images/green.png' width='20' alt='No drift detected' />&nbsp;No active drifts detected for the current tenant.</span>"
     }
     container.appendChild(spanDrifts);
   }
@@ -578,7 +578,7 @@ function showSnapshot(data, graphURI) {
   delete data['@odata.context'];
   var snapshotContent = JSON.stringify(data, null, 4);
   let divCountResources = document.createElement('div')
-  divCountResources.innerHTML = "<strong>This snapshot contains:</strong> " + data.resources.length + " resources&nbsp;<a onclick='showReport();'><img src='report.png' alt='Generate report' width='25px' /></a>";
+  divCountResources.innerHTML = "<strong>This snapshot contains:</strong> " + data.resources.length + " resources&nbsp;<a onclick='showReport();'><img src='/images/report.png' alt='Generate report' width='25px' /></a>";
   let form = document.createElement('form');
 
   let contentGroup = createElement('div', 'form-group mb-2');
@@ -754,7 +754,7 @@ function showSnapshotJobs(snapshotJobs, graphURI) {
       let file = createElement('span');
       var resourceLocationId = job.resourceLocation.split('(')[1];
       resourceLocationId = resourceLocationId.split(')')[0].replace("'", "").replace("'", "").replace(" ","");
-      file.innerHTML = '<a href="#" onclick="getSnapshot(\'' + resourceLocationId + '\');"><img src="json.png" alt="View Snapshot" width="25" /></a>';
+      file.innerHTML = '<a href="#" onclick="getSnapshot(\'' + resourceLocationId + '\');"><img src="/images/json.png" alt="View Snapshot" width="25" /></a>';
       cell8.appendChild(file);
     }
     jobRow.appendChild(cell8);
@@ -763,7 +763,7 @@ function showSnapshotJobs(snapshotJobs, graphURI) {
     if (null != job.errorDetails && job.errorDetails.length != 0)
     {
       let errorIcon = createElement('span');
-      errorIcon.innerHTML = '<a href="#" onclick="getSnapshotErrors(\'' + job.id + '\');"><img src="error.png" alt="View Errors" width="25" /></a>';
+      errorIcon.innerHTML = '<a href="#" onclick="getSnapshotErrors(\'' + job.id + '\');"><img src="/images/error.png" alt="View Errors" width="25" /></a>';
       cellError.appendChild(errorIcon);
     }
     else
@@ -777,7 +777,7 @@ function showSnapshotJobs(snapshotJobs, graphURI) {
     if (null == job.createdBy.application.displayName && job.status != 'notStarted' && job.status != 'running')
     {
       let deleteSpan = createElement('span');
-      deleteSpan.innerHTML = '<a href"#" onclick="deleteSnapshotJob(\'' + job.id + '\');"><img src="delete.png" alt="Delete Snapshot" width="25" /></a>';
+      deleteSpan.innerHTML = '<a href"#" onclick="deleteSnapshotJob(\'' + job.id + '\');"><img src="/images/delete.png" alt="Delete Snapshot" width="25" /></a>';
       deletecell.appendChild(deleteSpan);
     }
     jobRow.appendChild(deletecell);
@@ -930,7 +930,7 @@ function showMonitors(monitors, runs, graphURI) {
     if (null == monitor.createdBy.application.displayName)
     {
       let deleteSpan = createElement('span');
-      deleteSpan.innerHTML = '<a href"#" onclick="deleteMonitor(\'' + monitor.id + '\');"><img src="delete.png" alt="Delete Monitor" width="25" /></a>';
+      deleteSpan.innerHTML = '<a href"#" onclick="deleteMonitor(\'' + monitor.id + '\');"><img src="/images/delete.png" alt="Delete Monitor" width="25" /></a>';
       deletecell.appendChild(deleteSpan);
     }
     monitorrow.appendChild(deletecell);
@@ -974,12 +974,12 @@ function showMonitors(monitors, runs, graphURI) {
           if (run.driftsCount > 0)
           {
             driftcell = createElement('td');
-            driftcell.innerHTML = "<img src='red.png' width='20' alt='" + run.driftsCount + " drifts detected' />&nbsp;<a class='driftLink' onclick=\"getDrifts('" + monitor.id+ "')\">" + run.driftsCount + " Drift(s) Detected</a>";
+            driftcell.innerHTML = "<img src='/images/red.png' width='20' alt='" + run.driftsCount + " drifts detected' />&nbsp;<a class='driftLink' onclick=\"getDrifts('" + monitor.id+ "')\">" + run.driftsCount + " Drift(s) Detected</a>";
           }
           else
           {
             driftcell = createElement('td');
-            driftcell.innerHTML = "<img src='green.png' width='20' alt='No drift detected' />&nbsp;0 Drift(s) Detected"
+            driftcell.innerHTML = "<img src='/images/green.png' width='20' alt='No drift detected' />&nbsp;0 Drift(s) Detected"
           }
           runrow.appendChild(driftcell);
 
@@ -987,7 +987,7 @@ function showMonitors(monitors, runs, graphURI) {
           {
             let cellError = createElement('td', null, null);
             let errorIcon = createElement('span');
-            errorIcon.innerHTML = '<a href="#" onclick="getMonitorRunErrors(\'' + job.id + '\');"><img src="error.png" alt="View Errors" width="25" /></a>';
+            errorIcon.innerHTML = '<a href="#" onclick="getMonitorRunErrors(\'' + job.id + '\');"><img src="/images/error.png" alt="View Errors" width="25" /></a>';
             cellError.appendChild(errorIcon);
             runrow.appendChild(cellError);
           }
