@@ -585,6 +585,7 @@ function showReport()
   }
   let report = document.createElement('div');
   report.innerHTML = htmlContent;
+  mainContainer.innerHTML = '';
   mainContainer.appendChild(report);
 }
 
@@ -665,7 +666,7 @@ function showSnapshotJobs(snapshotJobs, graphURI) {
   div.appendChild(newEventButton);
 
   let refreshIcon = createElement('span');
-  refreshIcon.innerHTML = "&nbsp;&nbsp;<img src='refresh.jpg' alt='Refresh' onclick='getSnapshotJobs();' width='25' style='cursor:pointer;float:right;margin-top:-10px;' />";
+  refreshIcon.innerHTML = "&nbsp;&nbsp;<img src='images/refresh.jpg' alt='Refresh' onclick='getSnapshotJobs();' width='25' style='cursor:pointer;float:right;margin-top:-10px;' />";
   div.appendChild(refreshIcon);
 
   let tableJobs = createElement('table', 'table');
