@@ -578,9 +578,9 @@ function showReport()
     htmlContent += "<tr><th rowspan='" + resource.properties.length + "' style='border:1px solid black;'><th colspan='2' style='border:1px solid black;'>" + resource.displayName + "</th></tr>";
     for (const property in resource.properties)
     {
-      htmlContent += "<tr><td style='text-align:right;' style='border:1px solid black;'>" + property + "</td><td style='border:1px solid black;'>" + resource.properties[property] + "</td></tr>";
+      htmlContent += "<tr><td style='text-align:right; border:1px solid black;'>" + property + "</td><td style='border:1px solid black;'>" + resource.properties[property] + "</td></tr>";
     }
-    htmlContent += "</table>";
+    htmlContent += "</table><br/><br/>";
   }
   let report = document.createElement('div');
   report.innerHTML = htmlContent;
