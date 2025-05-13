@@ -575,12 +575,11 @@ function showReport()
   for (const resource of snapshot.resources)
   {
     htmlContent += "<table width='100%'>";
-    htmlContent += "<tr><th rowspan='" + resource.properties.length + "'><th colspan='2'>" + resource.displayName + "</th></tr>";
+    htmlContent += "<tr><th rowspan='" + resource.properties.length + "' style='border:1px solid black;'><th colspan='2' style='border:1px solid black;'>" + resource.displayName + "</th></tr>";
     for (const property in resource.properties)
     {
-      htmlContent += "<tr><td style='text-align:right;'>" + property + "</td><td></td></tr>";
+      htmlContent += "<tr><td style='text-align:right;' style='border:1px solid black;'>" + property + "</td><td style='border:1px solid black;'>" + resource.properties[property] + "</td></tr>";
     }
-    htmlContent += "<tr><td>";
     htmlContent += "</table>";
   }
   let report = document.createElement('div');
