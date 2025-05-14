@@ -29,7 +29,7 @@ function showAuthenticatedNav(user, view) {
     var monitorLink = createElement('button',
       `btn btn-link nav-link${view === Views.monitors ? ' active' : '' }`,
       'Monitors');
-    monitorLink.setAttribute('onclick', 'getMonitors();');
+    monitorLink.setAttribute('onclick', 'showLoading();getMonitors();');
     monitorNav.appendChild(monitorLink);
 
     authenticatedNav.appendChild(monitorNav);
@@ -39,7 +39,7 @@ function showAuthenticatedNav(user, view) {
     var snapshotLink = createElement('button',
       `btn btn-link nav-link${view === Views.monitors ? ' active' : '' }`,
       'Snapshots');
-    snapshotLink.setAttribute('onclick', 'getSnapshotJobs();');
+    snapshotLink.setAttribute('onclick', 'showLoading();getSnapshotJobs();');
     snapshotNav.appendChild(snapshotLink);
 
     authenticatedNav.appendChild(snapshotNav);
@@ -624,6 +624,11 @@ function countResourcesByType(data){
     }
   }
   return result;
+}
+
+function showLoading() {
+  document.querySelector("#main-container").style.visibility = "hidden";
+  document.querySelector("#loader").style.visibility = "visible";
 }
 
 function showSnapshot(data, graphURI) {
