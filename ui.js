@@ -612,7 +612,7 @@ function sortByProperty(objArray, prop, direction){
 
 function countResourcesByType(data){
   const result = {};
-  for(const resource in data.resources)
+  for(const resource of data.resources)
   {
     if (!result[resource.resourceType])
     {
