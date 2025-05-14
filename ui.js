@@ -610,11 +610,28 @@ function sortByProperty(objArray, prop, direction){
     return clone;
 }
 
+function countResourcesByType(data){
+  const result = {};
+  for(const resource in data.resources)
+  {
+    if (!result.keys.contains(resource.resourceType))
+    {
+      result.set(resource.resourceType, 1);
+    }
+    else
+    {
+      result[resource.resourceType]++;
+    }
+  }
+  return result;
+}
+
 function showSnapshot(data, graphURI) {
 
   delete data.id;
   delete data['@odata.context'];
 
+  var countResourceType = countResourcesByType();
   var sortedResources = sortByProperty(data.resources, 'resourceType');
   data.resources = sortedResources;
   var snapshotContent = JSON.stringify(data, null, 4);
