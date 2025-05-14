@@ -574,8 +574,9 @@ function showReport()
   htmlContent = ""
   for (const resource of snapshot.resources)
   {
+    resourceWorkload = resource.resourceType.split(".")[1];
     htmlContent += "<table width='100%'>";
-    htmlContent += "<tr><th rowspan='" + (Object.keys(resource.properties).length+1) + "' style='border:1px solid black;'></th><th colspan='2' style='border:1px solid black;'>" + resource.displayName + "</th></tr>";
+    htmlContent += "<tr><th rowspan='" + (Object.keys(resource.properties).length+1) + "' style='border:1px solid black;'><img src='images/" + resourceWorkload + ".png' alt='" + resourceWorkload + "' /></th><th colspan='2' style='border:1px solid black;'>" + resource.displayName + "</th></tr>";
     for (const property in resource.properties)
     {
       htmlContent += "<tr><td style='text-align:right; border:1px solid black;'>" + property + "</td><td style='border:1px solid black;'>" + resource.properties[property] + "</td></tr>";
