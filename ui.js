@@ -652,6 +652,7 @@ function showSnapshot(data, graphURI) {
 
   let contentGroup = createElement('div', 'form-group mb-2');
   contentGroup.appendChild(divCountResources);
+  contentGroup.appendChild(divBreakdown);
   form.appendChild(contentGroup);
 
   contentGroup.appendChild(createElement('label', '', 'Snapshot Content:'));
