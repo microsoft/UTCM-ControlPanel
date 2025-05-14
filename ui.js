@@ -631,13 +631,23 @@ function showSnapshot(data, graphURI) {
   delete data.id;
   delete data['@odata.context'];
 
-  var countResourceType = countResourcesByType(data);
   var sortedResources = sortByProperty(data.resources, 'resourceType');
   data.resources = sortedResources;
   var snapshotContent = JSON.stringify(data, null, 4);
 
   let divCountResources = document.createElement('div')
   divCountResources.innerHTML = "<strong>This snapshot contains:</strong> " + data.resources.length + " resources&nbsp;<a onclick='showReport();'><img src='images/report.png' alt='Generate report' width='25px' /></a>";
+
+  var countResourceType = countResourcesByType(data);
+  let divBreakdown = document.createElement('div');
+  var breakdownContent = "<ul>"
+  for(const resource of countResourceType)
+  {
+    breakdownContent += "<li>" + resource + " (" + countReosurceType[resource] + ")</li>"
+  }
+  breakdownContent +="</ul>"
+  divBreakdown.innerHTML = breakdownContent;
+
   let form = document.createElement('form');
 
   let contentGroup = createElement('div', 'form-group mb-2');
