@@ -869,6 +869,7 @@ function showSnapshotJobs(snapshotJobs, graphURI) {
   mainContainer.innerHTML = '';
   mainContainer.appendChild(div);
   showGraphBanner(graphURI, "GET");
+  flipLoading();
 }
 
 function showDrifts(drifts, graphURI) {
