@@ -768,7 +768,7 @@ function showSnapshotJobs(snapshotJobs, graphURI) {
 
     if (statusContent == 'running')
     {
-      statusContent = "running<br/><img src='running.gif' width='25' alt='running' />"
+      statusContent = "running<br/><img src='images/running.gif' width='25' alt='running' />"
     }
     let cell3 = createElement('td', null, null);
     cell3.innerHTML = statusContent;
