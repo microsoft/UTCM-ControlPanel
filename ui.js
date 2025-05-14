@@ -610,11 +610,28 @@ function sortByProperty(objArray, prop, direction){
     return clone;
 }
 
+function countResourcesByType(data){
+  const result = {};
+  for(const resource in data.resources)
+  {
+    if (!result.keys.contains(resource.resourceType))
+    {
+      result.set(resource.resourceType, 1);
+    }
+    else
+    {
+      result[resource.resourceType]++;
+    }
+  }
+  return result;
+}
+
 function showSnapshot(data, graphURI) {
 
   delete data.id;
   delete data['@odata.context'];
 
+  var countResourceType = countResourcesByType();
   var sortedResources = sortByProperty(data.resources, 'resourceType');
   data.resources = sortedResources;
   var snapshotContent = JSON.stringify(data, null, 4);
@@ -751,7 +768,7 @@ function showSnapshotJobs(snapshotJobs, graphURI) {
 
     if (statusContent == 'running')
     {
-      statusContent = "running<br/><img src='running.gif' width='25' alt='running' />"
+      statusContent = "running<br/><img src='images/running.gif' width='25' alt='running' />"
     }
     let cell3 = createElement('td', null, null);
     cell3.innerHTML = statusContent;
