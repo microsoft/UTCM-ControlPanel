@@ -29,7 +29,7 @@ function showAuthenticatedNav(user, view) {
     var monitorLink = createElement('button',
       `btn btn-link nav-link${view === Views.monitors ? ' active' : '' }`,
       'Monitors');
-    monitorLink.setAttribute('onclick', 'flipLoading();getMonitors();');
+    monitorLink.setAttribute('onclick', 'getMonitors();');
     monitorNav.appendChild(monitorLink);
 
     authenticatedNav.appendChild(monitorNav);
@@ -39,7 +39,7 @@ function showAuthenticatedNav(user, view) {
     var snapshotLink = createElement('button',
       `btn btn-link nav-link${view === Views.monitors ? ' active' : '' }`,
       'Snapshots');
-    snapshotLink.setAttribute('onclick', 'flipLoading();getSnapshotJobs();');
+    snapshotLink.setAttribute('onclick', 'getSnapshotJobs();');
     snapshotNav.appendChild(snapshotLink);
 
     authenticatedNav.appendChild(snapshotNav);
@@ -626,19 +626,6 @@ function countResourcesByType(data){
   return result;
 }
 
-function flipLoading() {
-  if (document.querySelector("#main-container").style.visibility != 'hidden')
-  {
-    document.querySelector("#main-container").style.visibility = "hidden";
-    document.querySelector("#loader").style.visibility = "visible";
-  }
-  else
-  {
-    document.querySelector("#main-container").style.visibility = "visible";
-    document.querySelector("#loader").style.visibility = "hidden";
-  }
-}
-
 function showSnapshot(data, graphURI) {
 
   delete data.id;
@@ -869,7 +856,6 @@ function showSnapshotJobs(snapshotJobs, graphURI) {
   mainContainer.innerHTML = '';
   mainContainer.appendChild(div);
   showGraphBanner(graphURI, "GET");
-  flipLoading();
 }
 
 function showDrifts(drifts, graphURI) {
@@ -1079,7 +1065,6 @@ function showMonitors(monitors, runs, graphURI) {
         catch{}
       }
     }
-    flipLoading();
   }
 
   mainContainer.innerHTML = '';
