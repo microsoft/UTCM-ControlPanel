@@ -641,9 +641,9 @@ function showSnapshot(data, graphURI) {
   var countResourceType = countResourcesByType(data);
   let divBreakdown = document.createElement('div');
   var breakdownContent = "<ul>"
-  for(const resource of countResourceType.keys)
+  for(const resource of Object.keys(countResourceType))
   {
-    breakdownContent += "<li>" + resource + " (" + countReosurceType[resource] + ")</li>"
+    breakdownContent += "<li>" + resource + " (" + countResourceType[resource] + ")</li>"
   }
   breakdownContent +="</ul>"
   divBreakdown.innerHTML = breakdownContent;
