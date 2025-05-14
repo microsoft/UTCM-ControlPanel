@@ -631,7 +631,7 @@ function showSnapshot(data, graphURI) {
   delete data.id;
   delete data['@odata.context'];
 
-  var countResourceType = countResourcesByType();
+  var countResourceType = countResourcesByType(data);
   var sortedResources = sortByProperty(data.resources, 'resourceType');
   data.resources = sortedResources;
   var snapshotContent = JSON.stringify(data, null, 4);
