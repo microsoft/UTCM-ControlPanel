@@ -614,9 +614,9 @@ function countResourcesByType(data){
   const result = {};
   for(const resource in data.resources)
   {
-    if (!result.keys.contains(resource.resourceType))
+    if (!result[resource.resourceType])
     {
-      result.set(resource.resourceType, 1);
+      result[resource.resourceType] = 1;
     }
     else
     {
