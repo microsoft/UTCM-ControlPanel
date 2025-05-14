@@ -576,7 +576,7 @@ function showReport()
   {
     resourceWorkload = resource.resourceType.split(".")[1];
     htmlContent += "<table width='100%'>";
-    htmlContent += "<tr><th width='10%' rowspan='" + (Object.keys(resource.properties).length+1) + "' style='border:1px solid black;'><img src='images/" + resourceWorkload + ".png' alt='" + resourceWorkload + "' width='70px' /></th><th colspan='2' style='border:1px solid black;'>" + resource.displayName + "</th></tr>";
+    htmlContent += "<tr><th width='10%' rowspan='" + (Object.keys(resource.properties).length+1) + "' style='border:1px solid black;text-align:middle;'><img src='images/" + resourceWorkload + ".png' alt='" + resourceWorkload + "' width='70px' /></th><th colspan='2' style='border:1px solid black;text-align:middle;'>" + resource.displayName + "</th></tr>";
     for (const property in resource.properties)
     {
       htmlContent += "<tr><td style='text-align:right; border:1px solid black;' width='25%'>" + property + "</td><td style='border:1px solid black;' width='65%'>" + resource.properties[property] + "</td></tr>";
