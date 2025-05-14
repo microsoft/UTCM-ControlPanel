@@ -29,7 +29,7 @@ function showAuthenticatedNav(user, view) {
     var monitorLink = createElement('button',
       `btn btn-link nav-link${view === Views.monitors ? ' active' : '' }`,
       'Monitors');
-    monitorLink.setAttribute('onclick', 'showLoading();getMonitors();');
+    monitorLink.setAttribute('onclick', 'flipLoading();getMonitors();flipLoading();');
     monitorNav.appendChild(monitorLink);
 
     authenticatedNav.appendChild(monitorNav);
@@ -39,7 +39,7 @@ function showAuthenticatedNav(user, view) {
     var snapshotLink = createElement('button',
       `btn btn-link nav-link${view === Views.monitors ? ' active' : '' }`,
       'Snapshots');
-    snapshotLink.setAttribute('onclick', 'showLoading();getSnapshotJobs();');
+    snapshotLink.setAttribute('onclick', 'flipLoading();getSnapshotJobs();flipLoading();');
     snapshotNav.appendChild(snapshotLink);
 
     authenticatedNav.appendChild(snapshotNav);
@@ -626,9 +626,17 @@ function countResourcesByType(data){
   return result;
 }
 
-function showLoading() {
-  document.querySelector("#main-container").style.visibility = "hidden";
-  document.querySelector("#loader").style.visibility = "visible";
+function flipLoading() {
+  if (document.querySelector("#main-container").style.visibility != 'hidden')
+  {
+    document.querySelector("#main-container").style.visibility = "hidden";
+    document.querySelector("#loader").style.visibility = "visible";
+  }
+  else
+  {
+    document.querySelector("#main-container").style.visibility = "visible";
+    document.querySelector("#loader").style.visibility = "hidden";
+  }
 }
 
 function showSnapshot(data, graphURI) {
