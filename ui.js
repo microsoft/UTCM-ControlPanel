@@ -949,7 +949,7 @@ function showMonitors(monitors, runs, graphURI) {
   div.appendChild(newEventButton);
 
   let refreshIcon = createElement('span');
-  refreshIcon.innerHTML = "&nbsp;&nbsp;<img src='refresh.jpg' alt='Refresh' onclick='getMonitors();' width='25' style='cursor:pointer;float:right;margin-top:-10px;' />";
+  refreshIcon.innerHTML = "&nbsp;&nbsp;<img src='images/refresh.jpg' alt='Refresh' onclick='getMonitors();' width='25' style='cursor:pointer;float:right;margin-top:-10px;' />";
   div.appendChild(refreshIcon);
 
   let table = createElement('table', 'table');
