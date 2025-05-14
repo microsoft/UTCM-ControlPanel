@@ -29,7 +29,7 @@ function showAuthenticatedNav(user, view) {
     var monitorLink = createElement('button',
       `btn btn-link nav-link${view === Views.monitors ? ' active' : '' }`,
       'Monitors');
-    monitorLink.setAttribute('onclick', 'flipLoading();getMonitors();flipLoading();');
+    monitorLink.setAttribute('onclick', 'flipLoading();getMonitors();');
     monitorNav.appendChild(monitorLink);
 
     authenticatedNav.appendChild(monitorNav);
@@ -39,7 +39,7 @@ function showAuthenticatedNav(user, view) {
     var snapshotLink = createElement('button',
       `btn btn-link nav-link${view === Views.monitors ? ' active' : '' }`,
       'Snapshots');
-    snapshotLink.setAttribute('onclick', 'flipLoading();getSnapshotJobs();flipLoading();');
+    snapshotLink.setAttribute('onclick', 'flipLoading();getSnapshotJobs();');
     snapshotNav.appendChild(snapshotLink);
 
     authenticatedNav.appendChild(snapshotNav);
@@ -1078,6 +1078,7 @@ function showMonitors(monitors, runs, graphURI) {
         catch{}
       }
     }
+    flipLoading();
   }
 
   mainContainer.innerHTML = '';
