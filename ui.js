@@ -590,6 +590,7 @@ function showReport()
 {
   content = document.getElementById('snap-content').innerHTML;
   snapshot = JSON.parse(content);
+  var htmlContent = "";
   for (const resource of snapshot.resources)
   {
     resourceWorkload = resource.resourceType.split(".")[1];
