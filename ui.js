@@ -590,7 +590,6 @@ function showReport()
 {
   content = document.getElementById('snap-content').innerHTML;
   snapshot = JSON.parse(content);
-  htmlContent = "<a onclick='downloadContent();'><img src='images/download.png' alt='Download report' width='25px' /></a>"
   for (const resource of snapshot.resources)
   {
     resourceWorkload = resource.resourceType.split(".")[1];
@@ -607,13 +606,6 @@ function showReport()
   mainContainer.innerHTML = '';
   mainContainer.appendChild(report);
   hideLoading();
-}
-
-function downloadContent()
-{
-  document.location = 
-        'data:text/attachment;base64,' +
-        utf8_to_b64(document.getElementById('main-container').innerHTML);
 }
 
 function sortByProperty(objArray, prop, direction){
