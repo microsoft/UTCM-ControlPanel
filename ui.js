@@ -226,6 +226,8 @@ function showNewSnapshotForm() {
   let displayNameInput = createElement('input', 'form-control');
   displayNameInput.setAttribute('id', 'mon-displayName');
   displayNameInput.setAttribute('type', 'text');
+  displayNameInput.setAttribute('required');
+  displayNameInput.setAttribute('minlength', 8)
   displayNameGroup.appendChild(displayNameInput);
 
   let descriptionGroup = createElement('div', 'form-group mb-2');
@@ -512,7 +514,9 @@ function showNewMonitorForm() {
 
   let displayNameInput = createElement('input', 'form-control');
   displayNameInput.setAttribute('id', 'mon-displayName');
-  displayNameInput.setAttribute('type', 'text');
+  displayNameInput.setAttribute('type', 'text');  
+  displayNameInput.setAttribute('required');
+  displayNameInput.setAttribute('minlength', 8)
   displayNameGroup.appendChild(displayNameInput);
 
   let descriptionGroup = createElement('div', 'form-group mb-2');
@@ -829,7 +833,7 @@ function showSnapshotJobs(snapshotJobs, graphURI) {
       let file = createElement('span');
       var resourceLocationId = job.resourceLocation.split('(')[1];
       resourceLocationId = resourceLocationId.split(')')[0].replace("'", "").replace("'", "").replace(" ","");
-      file.innerHTML = '<a href="#" onclick="getSnapshot(\'' + resourceLocationId + '\');"><img src="images/json.png" alt="View Snapshot" width="25" /></a>';
+      file.innerHTML = '<a href="#" onclick="showLoading();getSnapshot(\'' + resourceLocationId + '\');"><img src="images/json.png" alt="View Snapshot" width="25" /></a>';
       cell8.appendChild(file);
     }
     jobRow.appendChild(cell8);
@@ -838,7 +842,7 @@ function showSnapshotJobs(snapshotJobs, graphURI) {
     if (null != job.errorDetails && job.errorDetails.length != 0)
     {
       let errorIcon = createElement('span');
-      errorIcon.innerHTML = '<a href="#" onclick="getSnapshotErrors(\'' + job.id + '\');"><img src="images/error.png" alt="View Errors" width="25" /></a>';
+      errorIcon.innerHTML = '<a href="#" onclick="showLoading();getSnapshotErrors(\'' + job.id + '\');"><img src="images/error.png" alt="View Errors" width="25" /></a>';
       cellError.appendChild(errorIcon);
     }
     else
@@ -852,7 +856,7 @@ function showSnapshotJobs(snapshotJobs, graphURI) {
     if (null == job.createdBy.application.displayName && job.status != 'notStarted' && job.status != 'running')
     {
       let deleteSpan = createElement('span');
-      deleteSpan.innerHTML = '<a href"#" onclick="deleteSnapshotJob(\'' + job.id + '\');"><img src="images/delete.png" alt="Delete Snapshot" width="25" /></a>';
+      deleteSpan.innerHTML = '<a href"#" onclick="showLoading();deleteSnapshotJob(\'' + job.id + '\');"><img src="images/delete.png" alt="Delete Snapshot" width="25" /></a>';
       deletecell.appendChild(deleteSpan);
     }
     jobRow.appendChild(deletecell);
