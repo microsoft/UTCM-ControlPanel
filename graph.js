@@ -31,49 +31,42 @@ async function createNewMonitor() {
 
   // Get the user's input
   const displayName = document.getElementById('mon-displayName').value;
-  if (displayName.Length < 8)
-  {
-    alert("The display name of your monitor needs to be at least 8 characters long and can't contain spaces.");
+  const description = document.getElementById('mon-description').value;
+  const baseline = document.getElementById('mon-baseline').value;
+  const parameters = document.getElementById('mon-parameters').value;
+
+  // Require at least subject, start, and end
+  if (!displayName || !baseline) {
+    updatePage(Views.error, {
+      message: 'Please provide a display name and content for the baseline.'
+    });
+    return;
   }
-  else
+
+  let newMonitor = {
+    displayName: displayName,
+    description: description,
+    baseline: JSON.parse(baseline)
+  };
+
+  if ('' != parameters)
   {
-    const description = document.getElementById('mon-description').value;
-    const baseline = document.getElementById('mon-baseline').value;
-    const parameters = document.getElementById('mon-parameters').value;
+    newMonitor.parameters = JSON.parse(parameters)
+  }
 
-    // Require at least subject, start, and end
-    if (!displayName || !baseline) {
-      updatePage(Views.error, {
-        message: 'Please provide a display name and content for the baseline.'
-      });
-      return;
-    }
+  try {
+    await graphClient
+      .api('https://graph.microsoft.com/beta/admin/configurationManagement/configurationMonitors/')
+      .header('Content-Type', 'application/json')
+      .post(newMonitor);
 
-    let newMonitor = {
-      displayName: displayName,
-      description: description,
-      baseline: JSON.parse(baseline)
-    };
-
-    if ('' != parameters)
-    {
-      newMonitor.parameters = JSON.parse(parameters)
-    }
-
-    try {
-      await graphClient
-        .api('https://graph.microsoft.com/beta/admin/configurationManagement/configurationMonitors/')
-        .header('Content-Type', 'application/json')
-        .post(newMonitor);
-
-      // Return to the calendar view
-      getMonitors();
-    } catch (error) {
-      updatePage(Views.error, {
-        message: 'Error creating monitor',
-        debug: error + ": " + newMonitor.baseline
-      });
-    }
+    // Return to the calendar view
+    getMonitors();
+  } catch (error) {
+    updatePage(Views.error, {
+      message: 'Error creating monitor',
+      debug: error + ": " + newMonitor.baseline
+    });
   }
 }
 
@@ -82,57 +75,50 @@ async function createNewSnapshot() {
 
   // Get the user's input
   const displayName = document.getElementById('mon-displayName').value;
-  if (displayName.Length < 8)
-  {
-    alert("The display name of your snapshot needs to be at least 8 characters long and can't contain spaces.");
+  const description = document.getElementById('mon-description').value;
+
+  var result = [];
+  var select = document.getElementById('mon-resources');
+  var options = select && select.options;
+  var opt;
+  var resources = ""
+  for (var i=0, iLen=options.length; i<iLen; i++) {
+    opt = options[i];
+
+    if (opt.selected)
+    {
+      resources += opt.value + ",";
+    }
   }
-  else
-  {
-    const description = document.getElementById('mon-description').value;
+  resources = resources.slice(0, -1);
 
-    var result = [];
-    var select = document.getElementById('mon-resources');
-    var options = select && select.options;
-    var opt;
-    var resources = ""
-    for (var i=0, iLen=options.length; i<iLen; i++) {
-      opt = options[i];
+  // Require at least subject, start, and end
+  if (!displayName || !resources) {
+    updatePage(Views.error, {
+      message: 'Please provide a display name and the list of resources for the snapshot.'
+    });
+    return;
+  }
 
-      if (opt.selected)
-      {
-        resources += opt.value + ",";
-      }
-    }
-    resources = resources.slice(0, -1);
+  let newJob = {
+    displayName: displayName,
+    description: description,
+    resources: resources.split(',')
+  };
 
-    // Require at least subject, start, and end
-    if (!displayName || !resources) {
-      updatePage(Views.error, {
-        message: 'Please provide a display name and the list of resources for the snapshot.'
-      });
-      return;
-    }
+  try {
+    await graphClient
+      .api('https://graph.microsoft.com/beta/admin/configurationManagement/configurationSnapshots/createSnapshot')
+      .header('Content-Type', 'application/json')
+      .post(newJob);
 
-    let newJob = {
-      displayName: displayName,
-      description: description,
-      resources: resources.split(',')
-    };
-
-    try {
-      await graphClient
-        .api('https://graph.microsoft.com/beta/admin/configurationManagement/configurationSnapshots/createSnapshot')
-        .header('Content-Type', 'application/json')
-        .post(newJob);
-
-      // Return to the calendar view
-      getSnapshotJobs();
-    } catch (error) {
-      updatePage(Views.error, {
-        message: 'Error creating snapshot job',
-        debug: error + ": " + newJob.resources
-      });
-    }
+    // Return to the calendar view
+    getSnapshotJobs();
+  } catch (error) {
+    updatePage(Views.error, {
+      message: 'Error creating snapshot job',
+      debug: error + ": " + newJob.resources
+    });
   }
 }
 

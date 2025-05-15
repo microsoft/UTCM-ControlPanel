@@ -552,7 +552,7 @@ function showNewMonitorForm() {
 
   let createButton = createElement('button', 'btn btn-primary me-2', 'Create');
   createButton.setAttribute('type', 'button');
-  createButton.setAttribute('onclick', 'showLoading();createNewMonitor();');
+  createButton.setAttribute('onclick', 'showLoading();if(validateLength(\"mon-displayName\",8){createNewMonitor();}else{alert(\"Display name length needs to be at least 8 characters\");}');
   form.appendChild(createButton);
 
   let cancelButton = createElement('button', 'btn btn-secondary', 'Cancel');
@@ -564,6 +564,15 @@ function showNewMonitorForm() {
   mainContainer.appendChild(form);
   showGraphBanner("https://graph.microsoft.com/beta/admin/configurationManagement/configurationMonitors/","POST")
   hideLoading();
+}
+function validateLength(id, length)
+{
+  var element = document.getElementById(id)
+  if (element.text.length < length)
+  {
+    return false;
+  }
+  return true;
 }
 
 function showGraphBanner(uri, method)
@@ -578,7 +587,7 @@ function showReport()
 {
   content = document.getElementById('snap-content').innerHTML;
   snapshot = JSON.parse(content);
-  htmlContent = "<a onclick='downloadContent();'><img src='images/download.png' alt='Download report' /></a>"
+  htmlContent = "<a onclick='downloadContent();'><img src='images/download.png' alt='Download report' width='25px' /></a>"
   for (const resource of snapshot.resources)
   {
     resourceWorkload = resource.resourceType.split(".")[1];
