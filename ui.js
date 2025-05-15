@@ -29,7 +29,7 @@ function showAuthenticatedNav(user, view) {
     var monitorLink = createElement('button',
       `btn btn-link nav-link${view === Views.monitors ? ' active' : '' }`,
       'Monitors');
-    monitorLink.setAttribute('onclick', 'getMonitors();');
+    monitorLink.setAttribute('onclick', 'showLoading();getMonitors();');
     monitorNav.appendChild(monitorLink);
 
     authenticatedNav.appendChild(monitorNav);
@@ -39,7 +39,7 @@ function showAuthenticatedNav(user, view) {
     var snapshotLink = createElement('button',
       `btn btn-link nav-link${view === Views.monitors ? ' active' : '' }`,
       'Snapshots');
-    snapshotLink.setAttribute('onclick', 'getSnapshotJobs();');
+    snapshotLink.setAttribute('onclick', 'showLoading();getSnapshotJobs();');
     snapshotNav.appendChild(snapshotLink);
 
     authenticatedNav.appendChild(snapshotNav);
@@ -488,17 +488,18 @@ function showNewSnapshotForm() {
 
   let createButton = createElement('button', 'btn btn-primary me-2', 'Create');
   createButton.setAttribute('type', 'button');
-  createButton.setAttribute('onclick', 'createNewSnapshot();');
+  createButton.setAttribute('onclick', 'showLoading();createNewSnapshot();');
   form.appendChild(createButton);
 
   let cancelButton = createElement('button', 'btn btn-secondary', 'Cancel');
   cancelButton.setAttribute('type', 'button');
-  cancelButton.setAttribute('onclick', 'getSnapshotJobs();');
+  cancelButton.setAttribute('onclick', 'showLoading();getSnapshotJobs();');
   form.appendChild(cancelButton);
 
   mainContainer.innerHTML = '';
   mainContainer.appendChild(form);
   showGraphBanner("https://graph.microsoft.com/beta/admin/configurationManagement/configurationSnapshots/createSnapshot", "POST");
+  hideLoading();
 }
 
 function showNewMonitorForm() {
@@ -546,17 +547,18 @@ function showNewMonitorForm() {
 
   let createButton = createElement('button', 'btn btn-primary me-2', 'Create');
   createButton.setAttribute('type', 'button');
-  createButton.setAttribute('onclick', 'createNewMonitor();');
+  createButton.setAttribute('onclick', 'showLoading();createNewMonitor();');
   form.appendChild(createButton);
 
   let cancelButton = createElement('button', 'btn btn-secondary', 'Cancel');
   cancelButton.setAttribute('type', 'button');
-  cancelButton.setAttribute('onclick', 'getMonitors();');
+  cancelButton.setAttribute('onclick', 'showLoading();getMonitors();');
   form.appendChild(cancelButton);
 
   mainContainer.innerHTML = '';
   mainContainer.appendChild(form);
   showGraphBanner("https://graph.microsoft.com/beta/admin/configurationManagement/configurationMonitors/","POST")
+  hideLoading();
 }
 
 function showGraphBanner(uri, method)
@@ -587,6 +589,7 @@ function showReport()
   report.innerHTML = htmlContent;
   mainContainer.innerHTML = '';
   mainContainer.appendChild(report);
+  hideLoading();
 }
 
 function sortByProperty(objArray, prop, direction){
@@ -636,7 +639,7 @@ function showSnapshot(data, graphURI) {
   var snapshotContent = JSON.stringify(data, null, 4);
 
   let divCountResources = document.createElement('div')
-  divCountResources.innerHTML = "<strong>This snapshot contains:</strong> " + data.resources.length + " resources&nbsp;<a onclick='showReport();'><img src='images/report.png' alt='Generate report' width='25px' /></a>";
+  divCountResources.innerHTML = "<strong>This snapshot contains:</strong> " + data.resources.length + " resources&nbsp;<a onclick='showLoading();showReport();'><img src='images/report.png' alt='Generate report' width='25px' /></a>";
 
   var countResourceType = countResourcesByType(data);
   let divBreakdown = document.createElement('div');
@@ -668,6 +671,7 @@ function showSnapshot(data, graphURI) {
   mainContainer.innerHTML = '';
   mainContainer.appendChild(form);
   showGraphBanner(graphURI, "GET");
+  hideLoading();
 }
 
 function showSnapshotErrors(snapshotErrors, graphURI) {
@@ -706,6 +710,7 @@ function showSnapshotErrors(snapshotErrors, graphURI) {
   mainContainer.innerHTML = '';
   mainContainer.appendChild(div);
   showGraphBanner(graphURI, "GET");
+  hideLoading();
 }
 
 function showSnapshotJobs(snapshotJobs, graphURI) {
@@ -715,11 +720,11 @@ function showSnapshotJobs(snapshotJobs, graphURI) {
   div.appendChild(createElement('h1', 'mb-3', 'Snapshot Jobs'));
 
   let newEventButton = createElement('button', 'btn btn-light btn-sm mb-3 btn-create', 'Create Snapshot Job');
-  newEventButton.setAttribute('onclick', 'showNewSnapshotForm();');
+  newEventButton.setAttribute('onclick', 'showLoading();showNewSnapshotForm();');
   div.appendChild(newEventButton);
 
   let refreshIcon = createElement('span');
-  refreshIcon.innerHTML = "&nbsp;&nbsp;<img src='images/refresh.jpg' alt='Refresh' onclick='getSnapshotJobs();' width='25' style='cursor:pointer;float:right;margin-top:-10px;' />";
+  refreshIcon.innerHTML = "&nbsp;&nbsp;<img src='images/refresh.jpg' alt='Refresh' onclick='showLoading();getSnapshotJobs();' width='25' style='cursor:pointer;float:right;margin-top:-10px;' />";
   div.appendChild(refreshIcon);
 
   let tableJobs = createElement('table', 'table');
@@ -856,6 +861,7 @@ function showSnapshotJobs(snapshotJobs, graphURI) {
   mainContainer.innerHTML = '';
   mainContainer.appendChild(div);
   showGraphBanner(graphURI, "GET");
+  hideLoading();
 }
 
 function showDrifts(drifts, graphURI) {
@@ -937,6 +943,25 @@ function showDrifts(drifts, graphURI) {
   mainContainer.innerHTML = '';
   mainContainer.appendChild(div);
   showGraphBanner(graphURI, "GET");
+  hideLoading();
+}
+
+function showLoading()
+{
+  var loading = document.getElementById('loader');
+  var main = document.getElementById('main-container');
+
+  main.style.visibility = 'hidden';
+  loading.style.visibility = 'visible';
+}
+
+function hideLoading()
+{
+  var loading = document.getElementById('loader');
+  var main = document.getElementById('main-container');
+
+  main.style.visibility = 'visible';
+  loading.style.visibility = 'hidden';
 }
 
 function showMonitors(monitors, runs, graphURI) {
@@ -945,11 +970,11 @@ function showMonitors(monitors, runs, graphURI) {
   div.appendChild(createElement('h1', 'mb-3', 'Monitors'));
 
   let newEventButton = createElement('button', 'btn btn-light btn-sm mb-3 btn-create', 'Create Monitor');
-  newEventButton.setAttribute('onclick', 'showNewMonitorForm();');
+  newEventButton.setAttribute('onclick', 'showLoading();showNewMonitorForm();');
   div.appendChild(newEventButton);
 
   let refreshIcon = createElement('span');
-  refreshIcon.innerHTML = "&nbsp;&nbsp;<img src='images/refresh.jpg' alt='Refresh' onclick='getMonitors();' width='25' style='cursor:pointer;float:right;margin-top:-10px;' />";
+  refreshIcon.innerHTML = "&nbsp;&nbsp;<img src='images/refresh.jpg' alt='Refresh' onclick='showLoading();getMonitors();' width='25' style='cursor:pointer;float:right;margin-top:-10px;' />";
   div.appendChild(refreshIcon);
 
   let table = createElement('table', 'table');
@@ -1057,7 +1082,7 @@ function showMonitors(monitors, runs, graphURI) {
           {
             let cellError = createElement('td', null, null);
             let errorIcon = createElement('span');
-            errorIcon.innerHTML = '<a href="#" onclick="getMonitorRunErrors(\'' + job.id + '\');"><img src="images/error.png" alt="View Errors" width="25" /></a>';
+            errorIcon.innerHTML = '<a href="#" onclick="showLoading();getMonitorRunErrors(\'' + job.id + '\');"><img src="images/error.png" alt="View Errors" width="25" /></a>';
             cellError.appendChild(errorIcon);
             runrow.appendChild(cellError);
           }
@@ -1070,6 +1095,7 @@ function showMonitors(monitors, runs, graphURI) {
   mainContainer.innerHTML = '';
   mainContainer.appendChild(div);
   showGraphBanner(graphURI, "GET");
+  hideLoading();
 }
 
 function convertTimeZone(date, timeZone) {
