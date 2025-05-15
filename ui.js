@@ -571,7 +571,7 @@ function utf8_to_b64( str ) {
 function validateLength(id, length)
 {
   var element = document.getElementById(id)
-  if (element.text.length < length)
+  if (element.value.length < length)
   {
     return false;
   }
