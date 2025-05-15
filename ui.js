@@ -565,6 +565,9 @@ function showNewMonitorForm() {
   showGraphBanner("https://graph.microsoft.com/beta/admin/configurationManagement/configurationMonitors/","POST")
   hideLoading();
 }
+function utf8_to_b64( str ) {
+  return window.btoa(unescape(encodeURIComponent( str )));
+}
 function validateLength(id, length)
 {
   var element = document.getElementById(id)
@@ -609,8 +612,8 @@ function showReport()
 function downloadContent()
 {
   document.location = 
-        'data:text/attachment;,' +
-        document.getElementById('main-container').innerHTML;
+        'data:text/attachment;base64,' +
+        utf8_to_b64(document.getElementById('main-container').innerHTML);
 }
 
 function sortByProperty(objArray, prop, direction){
