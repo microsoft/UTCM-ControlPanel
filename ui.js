@@ -1029,7 +1029,7 @@ function showMonitors(monitors, runs, graphURI) {
     if (null == monitor.createdBy.application.displayName)
     {
       let deleteSpan = createElement('span');
-      deleteSpan.innerHTML = '<a href"#" onclick="deleteMonitor(\'' + monitor.id + '\');"><img src="images/delete.png" alt="Delete Monitor" width="25" /></a>';
+      deleteSpan.innerHTML = '<a href"#" onclick="showLoading();deleteMonitor(\'' + monitor.id + '\');"><img src="images/delete.png" alt="Delete Monitor" width="25" /></a>';
       deletecell.appendChild(deleteSpan);
     }
     monitorrow.appendChild(deletecell);
@@ -1073,7 +1073,7 @@ function showMonitors(monitors, runs, graphURI) {
           if (run.driftsCount > 0)
           {
             driftcell = createElement('td');
-            driftcell.innerHTML = "<img src='images/red.png' width='20' alt='" + run.driftsCount + " drifts detected' />&nbsp;<a class='driftLink' onclick=\"getDrifts('" + monitor.id+ "')\">" + run.driftsCount + " Drift(s) Detected</a>";
+            driftcell.innerHTML = "<img src='images/red.png' width='20' alt='" + run.driftsCount + " drifts detected' />&nbsp;<a class='driftLink' onclick=\"showLoading();getDrifts('" + monitor.id+ "')\">" + run.driftsCount + " Drift(s) Detected</a>";
           }
           else
           {
