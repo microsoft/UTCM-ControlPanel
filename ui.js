@@ -609,7 +609,7 @@ function showReport()
 function downloadContent()
 {
   document.location = 
-        'data:text/attachment;,'
+        'data:text/attachment;,' +
         document.getElementById('main-container').innerHTML;
 }
 
