@@ -226,6 +226,8 @@ function showNewSnapshotForm() {
   let displayNameInput = createElement('input', 'form-control');
   displayNameInput.setAttribute('id', 'mon-displayName');
   displayNameInput.setAttribute('type', 'text');
+  displayNameInput.setAttribute('required');
+  displayNameInput.setAttribute('minlength', 8)
   displayNameGroup.appendChild(displayNameInput);
 
   let descriptionGroup = createElement('div', 'form-group mb-2');
@@ -512,7 +514,9 @@ function showNewMonitorForm() {
 
   let displayNameInput = createElement('input', 'form-control');
   displayNameInput.setAttribute('id', 'mon-displayName');
-  displayNameInput.setAttribute('type', 'text');
+  displayNameInput.setAttribute('type', 'text');  
+  displayNameInput.setAttribute('required');
+  displayNameInput.setAttribute('minlength', 8)
   displayNameGroup.appendChild(displayNameInput);
 
   let descriptionGroup = createElement('div', 'form-group mb-2');
