@@ -491,7 +491,7 @@ function showNewSnapshotForm() {
 
   let createButton = createElement('button', 'btn btn-primary me-2', 'Create');
   createButton.setAttribute('type', 'button');
-  createButton.setAttribute('onclick', 'if(validateLength(\"mon-displayName\",8)){showLoading();createNewSnapshot();();}else{alert(\"Display name length needs to be at least 8 characters\");}');
+  createButton.setAttribute('onclick', 'if(validateLength(\"mon-displayName\",8)){showLoading();createNewSnapshot();}else{alert(\"Display name length needs to be at least 8 characters\");}');
   form.appendChild(createButton);
 
   let cancelButton = createElement('button', 'btn btn-secondary', 'Cancel');
