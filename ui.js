@@ -146,6 +146,7 @@ function showError(error) {
 
   mainContainer.innerHTML = '';
   mainContainer.appendChild(alert);
+  hideLoading();
 }
 
 function updatePage(view, data) {
@@ -577,7 +578,7 @@ function showReport()
 {
   content = document.getElementById('snap-content').innerHTML;
   snapshot = JSON.parse(content);
-  htmlContent = ""
+  htmlContent = "<a onclick='downloadContent();'><img src='images/download.png' alt='Download report' /></a>"
   for (const resource of snapshot.resources)
   {
     resourceWorkload = resource.resourceType.split(".")[1];
@@ -594,6 +595,13 @@ function showReport()
   mainContainer.innerHTML = '';
   mainContainer.appendChild(report);
   hideLoading();
+}
+
+function downloadContent()
+{
+  document.location = 
+        'data:text/attachment;,'
+        document.getElementById('main-container').innerHTML;
 }
 
 function sortByProperty(objArray, prop, direction){
