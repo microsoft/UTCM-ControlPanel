@@ -513,6 +513,18 @@ function showNewSnapshotForm() {
 function showNewMonitorForm(monitor, monitorBaseline) {
   let form = document.createElement('form');
 
+  if (null != monitor)
+  {
+      var countResourceType = countResourcesByType(monitorBaseline);
+      let divBreakdown = document.createElement('div');
+      var breakdownContent = "<ul>"
+      for(const resource of Object.keys(countResourceType))
+      {
+        breakdownContent += "<li>" + resource + " (" + countResourceType[resource] + ")</li>"
+      }
+      breakdownContent +="</ul>"
+      divBreakdown.innerHTML = breakdownContent;
+  }
   let displayNameGroup = createElement('div', 'form-group mb-2');
   form.appendChild(displayNameGroup);
 
@@ -623,6 +635,10 @@ function showNewMonitorForm(monitor, monitorBaseline) {
   form.appendChild(cancelButton);
 
   mainContainer.innerHTML = '';
+  if (null != monitor)
+  {
+    mainContainer.appendChild(breakdownContent);
+  }
   mainContainer.appendChild(form);
   
   let bottomSpacer = createElement('div');
