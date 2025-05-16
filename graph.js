@@ -152,6 +152,31 @@ async function getMonitors() {
   }
 }
 
+async function getMonitorDetails(monitorId) {
+  try {
+    var uri = "https://graph.microsoft.com/beta/admin/configurationManagement/configurationMonitors('" + monitorId + "')";
+    let responseMonitor = await graphClient
+      .api(uri)
+      .version('beta')
+      .top(1)
+      .get();
+
+    uri = "https://graph.microsoft.com/beta/admin/configurationManagement/configurationMonitors('" + monitorId + "')/baseline";
+    let responseMonitorBaseline = await graphClient
+      .api(uri)
+      .version('beta')
+      .top(1)
+      .get();
+
+    updatePage(Views.editMonitor, responseMonitor.value, responseMonitorBaseline.value);
+  } catch (error) {
+    updatePage(Views.error, {
+      message: 'Error getting events',
+      debug: error
+    });
+  }
+}
+
 async function getDrifts(monitorId) {
 
   try {
