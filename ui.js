@@ -625,6 +625,7 @@ function showNewMonitorForm(monitor, monitorBaseline) {
   
   let bottomSpacer = createElement('div');
   bottomSpacer.innerHTML = "<br /><br/>"
+  mainContainer.appendChild(bottomSpacer);
   showGraphBanner("https://graph.microsoft.com/beta/admin/configurationManagement/configurationMonitors/","POST")
   hideLoading();
 }
