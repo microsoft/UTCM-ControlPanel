@@ -539,6 +539,7 @@ function showNewMonitorForm() {
   optionMonitorOnly.text = 'MonitorOnly';
   optionMonitorOnly.value = 'MonitorOnly';
   optionMonitorOnly.setAttribute('disabled', true);
+  optionMonitorOnly.setAttribute('selected', true);
   configurationModeDDL.appendChild(optionMonitorOnly);
   configModeGroup.appendChild(configurationModeDDL);
 
