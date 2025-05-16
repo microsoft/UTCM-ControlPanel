@@ -524,6 +524,10 @@ function showNewMonitorForm(monitor, monitorBaseline) {
   displayNameInput.setAttribute('required', true);
   displayNameInput.setAttribute('minlength', 8);
   displayNameGroup.appendChild(displayNameInput);
+  if (null != monitor)
+  {
+    displayNameInput.value = monitor.displayName
+  }
 
   let descriptionGroup = createElement('div', 'form-group mb-2');
   form.appendChild(descriptionGroup);
@@ -534,6 +538,10 @@ function showNewMonitorForm(monitor, monitorBaseline) {
   descriptionInput.setAttribute('id', 'mon-description');
   descriptionInput.setAttribute('type', 'text');
   descriptionGroup.appendChild(descriptionInput);
+  if (null != monitor)
+  {
+    descriptionInput.value = monitor.description
+  }
 
   let newLine1 = createElement('br');
   let configModeGroup = createElement('div', 'form-group mb-2');
@@ -574,6 +582,11 @@ function showNewMonitorForm(monitor, monitorBaseline) {
   baselineInput.setAttribute('type', 'text');
   baselineInput.setAttribute('rows', '20');
   baselineGroup.appendChild(baselineInput);
+  if (null != monitorBaseline)
+  {
+    delete monitorBaseline['@odata.context']
+    baselineInput.value = JSON.stringify(monitorBaseline)
+  }
 
   let parametersGroup = createElement('div', 'form-group mb-2');
   form.appendChild(parametersGroup);
