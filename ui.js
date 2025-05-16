@@ -177,6 +177,8 @@ function updatePage(view, data) {
       break;
     case Views.snapshotErrors:
       break;
+    case Views.editMonitor:
+      break;
   }
 }
 
@@ -211,6 +213,9 @@ function updatePage(view, data, data2, graphURI) {
       break;
     case Views.snapshotErrors:
       showSnapshotErrors(data, graphURI);
+      break;    
+    case Views.snapshotErrors:
+      showNewMonitorForm(data, data2)
       break;
   }
 }
@@ -505,7 +510,7 @@ function showNewSnapshotForm() {
   hideLoading();
 }
 
-function showNewMonitorForm() {
+function showNewMonitorForm(monitor, monitorBaseline) {
   let form = document.createElement('form');
 
   let displayNameGroup = createElement('div', 'form-group mb-2');
@@ -595,6 +600,9 @@ function showNewMonitorForm() {
   showGraphBanner("https://graph.microsoft.com/beta/admin/configurationManagement/configurationMonitors/","POST")
   hideLoading();
 }
+
+
+
 function utf8_to_b64( str ) {
   return window.btoa(unescape(encodeURIComponent( str )));
 }
@@ -1075,7 +1083,7 @@ function showMonitors(monitors, runs, graphURI) {
     if (null == monitor.createdBy.application.displayName)
     {
       let editSpan = createElement('span');
-      editSpan.innerHTML = '<a href"#" onclick="showLoading();showEditMonitorForm(\'' + monitor.id + '\');"><img src="images/edit.png" alt="Edit Monitor" width="25" /></a>';
+      editSpan.innerHTML = '<a href"#" onclick="showLoading();getMonitorDetails(\'' + monitor.id + '\');"><img src="images/edit.png" alt="Edit Monitor" width="25" /></a>';
       editcell.appendChild(editSpan);
     }
     monitorrow.appendChild(editcell);
