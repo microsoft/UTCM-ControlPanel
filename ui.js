@@ -603,7 +603,7 @@ function showNewMonitorForm(monitor, monitorBaseline) {
   }
 
   let createButton = createElement('button', 'btn btn-primary me-2');
-  if (null == data)
+  if (null == monitor)
   {
     createButton.text = 'Create'
   }
