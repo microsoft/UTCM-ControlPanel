@@ -98,7 +98,7 @@ async function updateMonitor(monitorId) {
 
   try {
     await graphClient
-      .api('https://graph.microsoft.com/beta/admin/configurationManagement/configurationMonitors(\"' + monitorId + '\")')
+      .api("https://graph.microsoft.com/beta/admin/configurationManagement/configurationMonitors('" + monitorId + "')")
       .header('Content-Type', 'application/json')
       .patch(monitorInfo);
 
