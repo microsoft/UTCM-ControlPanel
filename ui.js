@@ -606,13 +606,15 @@ function showNewMonitorForm(monitor, monitorBaseline) {
   if (null == monitor)
   {
     createButton.innerText = 'Create'
+    createButton.setAttribute('onclick', 'if(validateLength(\"mon-displayName\",8)){showLoading();createNewMonitor();}else{alert(\"Display name length needs to be at least 8 characters\");}');
+  
   }
   else
   {
     createButton.innerText = 'Update'
+    createButton.setAttribute('onclick', 'if(validateLength(\"mon-displayName\",8)){showLoading();updateMonitor(\"' + monitor.id + '\");}else{alert(\"Display name length needs to be at least 8 characters\");}');
   }
   createButton.setAttribute('type', 'button');
-  createButton.setAttribute('onclick', 'if(validateLength(\"mon-displayName\",8)){showLoading();createNewMonitor();}else{alert(\"Display name length needs to be at least 8 characters\");}');
   form.appendChild(createButton);
 
   let cancelButton = createElement('button', 'btn btn-secondary', 'Cancel');

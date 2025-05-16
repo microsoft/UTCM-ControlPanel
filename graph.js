@@ -70,6 +70,48 @@ async function createNewMonitor() {
   }
 }
 
+async function updateMonitor(monitorId) {
+
+  // Get the user's input
+  const displayName = document.getElementById('mon-displayName').value;
+  const description = document.getElementById('mon-description').value;
+  const baseline = document.getElementById('mon-baseline').value;
+  const parameters = document.getElementById('mon-parameters').value;
+
+  // Require at least subject, start, and end
+  if (!displayName || !baseline) {
+    updatePage(Views.error, {
+      message: 'Please provide a display name and content for the baseline.'
+    });
+    return;
+  }
+
+  let monitorInfo = {
+    displayName: displayName,
+    description: description
+  };
+
+  if ('' != parameters)
+  {
+    monitorInfo.parameters = JSON.parse(parameters)
+  }
+
+  try {
+    await graphClient
+      .api('https://graph.microsoft.com/beta/admin/configurationManagement/configurationMonitors(\"' + monitorId + '\")')
+      .header('Content-Type', 'application/json')
+      .patch(monitorInfo);
+
+    // Return to the calendar view
+    getMonitors();
+  } catch (error) {
+    updatePage(Views.error, {
+      message: 'Error creating monitor',
+      debug: error + ": " + newMonitor.baseline
+    });
+  }
+}
+
 async function createNewSnapshot() {
   const user = JSON.parse(sessionStorage.getItem('graphUser'));
 
