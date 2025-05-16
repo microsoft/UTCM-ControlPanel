@@ -544,7 +544,7 @@ function showNewMonitorForm() {
 
   let runScheduleGroup = createElement('div', 'form-group mb-2');
   form.appendChild(runScheduleGroup);  
-  runScheduleGroup.appendChild(createElement('label', '', 'Configuration Mode: '));
+  runScheduleGroup.appendChild(createElement('label', '', 'Run Frequency: '));
   let runScheduleDDL = createElement('select');
   runScheduleDDL.setAttribute('id', 'ddlConfigMode');
   let optionSixhours = createElement('option');
