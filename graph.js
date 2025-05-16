@@ -166,7 +166,7 @@ async function getMonitorDetails(monitorId) {
       .version('beta')
       .get();
 
-    updatePage(Views.editMonitor, responseMonitor.value, responseMonitorBaseline.value);
+    updatePage(Views.editMonitor, responseMonitor, responseMonitorBaseline);
   } catch (error) {
     updatePage(Views.error, {
       message: 'Error getting events',
