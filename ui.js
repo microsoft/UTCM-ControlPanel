@@ -513,10 +513,11 @@ function showNewSnapshotForm() {
 function showNewMonitorForm(monitor, monitorBaseline) {
   let form = document.createElement('form');
 
+  
+  let divBreakdown = document.createElement('div');
   if (null != monitor)
   {
       var countResourceType = countResourcesByType(monitorBaseline);
-      let divBreakdown = document.createElement('div');
       var breakdownContent = "<ul>"
       for(const resource of Object.keys(countResourceType))
       {
