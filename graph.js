@@ -165,7 +165,6 @@ async function getMonitorDetails(monitorId) {
     let responseMonitorBaseline = await graphClient
       .api(uri)
       .version('beta')
-      .top(1)
       .get();
 
     updatePage(Views.editMonitor, responseMonitor.value, responseMonitorBaseline.value);
