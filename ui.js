@@ -585,7 +585,7 @@ function showNewMonitorForm(monitor, monitorBaseline) {
   if (null != monitorBaseline)
   {
     delete monitorBaseline['@odata.context']
-    baselineInput.value = JSON.stringify(monitorBaseline)
+    baselineInput.value = JSON.stringify(monitorBaseline, null, 4)
   }
 
   let parametersGroup = createElement('div', 'form-group mb-2');
@@ -597,6 +597,10 @@ function showNewMonitorForm(monitor, monitorBaseline) {
   parametersInput.setAttribute('type', 'text');
   parametersInput.setAttribute('rows', '5');
   parametersGroup.appendChild(parametersInput);
+  if (null != monitor)
+  {
+    parametersInput.value = JSON.stringify(monitor.parameters, null, 4)
+  }
 
   let createButton = createElement('button', 'btn btn-primary me-2', 'Create');
   createButton.setAttribute('type', 'button');
