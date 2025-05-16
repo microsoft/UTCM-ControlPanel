@@ -536,7 +536,6 @@ function showNewMonitorForm(monitor, monitorBaseline) {
   {
       divBreakdown.style.visibility = 'hidden';
       divBreakdown.style.position = 'absolute';
-      showDetails.innerHTML = "<a id='linkInfo' onclick='toggleInfo(\"divBreakdown\");'><img src='images/info.png' width='25px' alt='Show info' /></a>"
       var countResourceType = countResourcesByType(monitorBaseline);
       var breakdownContent = "<ul>"
       var totalItems = 0
@@ -546,7 +545,8 @@ function showNewMonitorForm(monitor, monitorBaseline) {
         totalItems += countResourceType[resource];
       }
       breakdownContent +="</ul>"
-      divBreakdown.innerHTML = "This monitor's baseline contains (<strong>" + totalItems + "</strong>) resources:<br />"
+      showDetails.innerHTML = "This monitor's baseline contains (<strong>" + totalItems + "</strong>) resources&nbsp;"      
+      showDetails.innerHTML += "<a id='linkInfo' onclick='toggleInfo(\"divBreakdown\");'><img src='images/info.png' width='25px' alt='Show info' /></a>"
       divBreakdown.innerHTML += breakdownContent;
   }
   let displayNameGroup = createElement('div', 'form-group mb-2');
