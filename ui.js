@@ -602,7 +602,15 @@ function showNewMonitorForm(monitor, monitorBaseline) {
     parametersInput.value = JSON.stringify(monitor.parameters, null, 4)
   }
 
-  let createButton = createElement('button', 'btn btn-primary me-2', 'Create');
+  let createButton = createElement('button', 'btn btn-primary me-2');
+  if (null == data)
+  {
+    createButton.text = 'Create'
+  }
+  else
+  {
+    createButton.text = 'Update'
+  }
   createButton.setAttribute('type', 'button');
   createButton.setAttribute('onclick', 'if(validateLength(\"mon-displayName\",8)){showLoading();createNewMonitor();}else{alert(\"Display name length needs to be at least 8 characters\");}');
   form.appendChild(createButton);
@@ -614,6 +622,9 @@ function showNewMonitorForm(monitor, monitorBaseline) {
 
   mainContainer.innerHTML = '';
   mainContainer.appendChild(form);
+  
+  let bottomSpacer = createElement('div');
+  bottomSpacer.innerHTML = "<br /><br/>"
   showGraphBanner("https://graph.microsoft.com/beta/admin/configurationManagement/configurationMonitors/","POST")
   hideLoading();
 }
