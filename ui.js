@@ -519,12 +519,15 @@ function showNewMonitorForm(monitor, monitorBaseline) {
   {
       var countResourceType = countResourcesByType(monitorBaseline);
       var breakdownContent = "<ul>"
+      var totalItems = 0
       for(const resource of Object.keys(countResourceType))
       {
         breakdownContent += "<li>" + resource + " (" + countResourceType[resource] + ")</li>"
+        totalItems += countResourceType[resource];
       }
       breakdownContent +="</ul>"
-      divBreakdown.innerHTML = breakdownContent;
+      divBreakdown.innerHTML = "This monitor's baseline contains (<strong>" + totalItems + "</strong>) resources:<br />"
+      divBreakdown.innerHTML += breakdownContent;
   }
   let displayNameGroup = createElement('div', 'form-group mb-2');
   form.appendChild(displayNameGroup);
