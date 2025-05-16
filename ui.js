@@ -535,6 +535,7 @@ function showNewMonitorForm() {
   configModeGroup.appendChild(createElement('label', '', 'Configuration Mode: '));
   let configurationModeDDL = createElement('select');
   configurationModeDDL.setAttribute('id', 'ddlConfigMode');
+  configurationModeDDL.setAttribute('disabled', true)
   let optionMonitorOnly = createElement('option');
   optionMonitorOnly.text = 'MonitorOnly';
   optionMonitorOnly.value = 'MonitorOnly';
@@ -546,7 +547,8 @@ function showNewMonitorForm() {
   form.appendChild(runScheduleGroup);  
   runScheduleGroup.appendChild(createElement('label', '', 'Run Frequency: '));
   let runScheduleDDL = createElement('select');
-  runScheduleDDL.setAttribute('id', 'ddlConfigMode');
+  runScheduleDDL.setAttribute('id', 'ddlRunSchedule');
+  runScheduleDDL.setAttribute('disabled', true)
   let optionSixhours = createElement('option');
   optionSixhours.text = '6h';
   optionSixhours.value = '6h';
