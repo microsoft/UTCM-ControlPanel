@@ -106,8 +106,8 @@ async function updateMonitor(monitorId) {
     getMonitors();
   } catch (error) {
     updatePage(Views.error, {
-      message: 'Error creating monitor',
-      debug: error + ": " + newMonitor.baseline
+      message: 'Error updating monitor',
+      debug: error
     });
   }
 }
