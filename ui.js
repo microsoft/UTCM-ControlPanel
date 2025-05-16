@@ -530,6 +530,17 @@ function showNewMonitorForm() {
   descriptionInput.setAttribute('type', 'text');
   descriptionGroup.appendChild(descriptionInput);
 
+  let configModeGroup = createElement('div', 'form-group mb-2');
+  form.appendChild(configModeGroup);  
+  configModeGroup.appendChild(createElement('label', '', 'Configuration Mode'));
+  let configurationModeDDL = createElement('select');
+  configurationModeDDL.setAttribute('id', 'ddlConfigMode');
+  let optionMonitorOnly = createElement('option');
+  optionMonitorOnly.text = 'MonitorOnly';
+  optionMonitorOnly.value = 'MonitorOnly';
+  optionMonitorOnly.setAttribute('disabled', true);
+  configurationModeDDL.appendChild(optionMonitorOnly);
+
   let baselineGroup = createElement('div', 'form-group mb-2');
   form.appendChild(baselineGroup);
 
