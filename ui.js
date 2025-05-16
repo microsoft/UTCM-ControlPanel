@@ -1078,6 +1078,7 @@ function showMonitors(monitors, runs, graphURI) {
       editSpan.innerHTML = '<a href"#" onclick="showLoading();showEditMonitorForm(\'' + monitor.id + '\');"><img src="images/edit.png" alt="Edit Monitor" width="25" /></a>';
       editcell.appendChild(editSpan);
     }
+    monitorrow.appendChild(editcell);
 
     let deletecell = createElement('td', 'boldheader', null);
     // Only show the delete button if a monitor was created using credentials.
