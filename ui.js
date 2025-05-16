@@ -6,7 +6,7 @@ const authenticatedNav = document.getElementById('authenticated-nav');
 const accountNav = document.getElementById('account-nav');
 const mainContainer = document.getElementById('main-container');
 
-const Views = { error: 1, home: 2, monitors: 3, drifts:4, snapshots:5, snapshotInfo:6, snapshotErrors:7 };
+const Views = { error: 1, home: 2, monitors: 3, drifts:4, snapshots:5, snapshotInfo:6, snapshotErrors:7, editMonitor:8 };
 
 function createElement(type, className, text) {
   var element = document.createElement(type);
@@ -214,7 +214,7 @@ function updatePage(view, data, data2, graphURI) {
     case Views.snapshotErrors:
       showSnapshotErrors(data, graphURI);
       break;    
-    case Views.snapshotErrors:
+    case Views.editMonitor:
       showNewMonitorForm(data, data2)
       break;
   }
