@@ -158,7 +158,6 @@ async function getMonitorDetails(monitorId) {
     let responseMonitor = await graphClient
       .api(uri)
       .version('beta')
-      .top(1)
       .get();
 
     uri = "https://graph.microsoft.com/beta/admin/configurationManagement/configurationMonitors('" + monitorId + "')/baseline";
