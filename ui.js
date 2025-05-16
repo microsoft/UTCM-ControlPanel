@@ -510,13 +510,26 @@ function showNewSnapshotForm() {
   hideLoading();
 }
 
+function toggleInfo(elementId)
+{
+  var element = document.getElementById(elementId);
+
+  if (element.style.visibility == 'hidden')
+  {
+    element.style.visibility == 'visible'
+  }
+}
+
 function showNewMonitorForm(monitor, monitorBaseline) {
   let form = document.createElement('form');
 
-  
+  let showDetails = document.createElement('div')
   let divBreakdown = document.createElement('div');
+  divBreakdown.setAttribute('id', 'divBreakdown');
   if (null != monitor)
   {
+      divBreakdown.style.visibility = 'hidden';
+      showDetails.innerHTML = "<a id='linkInfo' onclick='toggleInfo(\"divBreakdown\");'><img src='images/info.png' width='25px' alt='Show info' /></a>"
       var countResourceType = countResourcesByType(monitorBaseline);
       var breakdownContent = "<ul>"
       var totalItems = 0
