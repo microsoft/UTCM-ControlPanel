@@ -1045,6 +1045,10 @@ function showMonitors(monitors, runs, graphURI) {
   status.setAttribute('scope', 'col');
   headerrow.appendChild(status);
 
+  let editMonitor = createElement('th', null, 'Edit');
+  editMonitor.setAttribute('scope', 'col');
+  headerrow.appendChild(editMonitor);
+
   let deleteMonitor = createElement('th', null, 'Delete');
   deleteMonitor.setAttribute('scope', 'col');
   headerrow.appendChild(deleteMonitor);
@@ -1066,8 +1070,16 @@ function showMonitors(monitors, runs, graphURI) {
     let statuscell = createElement('td', 'boldheader', monitor.status);
     monitorrow.appendChild(statuscell);
 
-    let deletecell = createElement('td', 'boldheader', null);
+    let editcell = createElement('td', 'boldheader', null);
+    // Only show the edit button if a monitor was created using credentials.
+    if (null == monitor.createdBy.application.displayName)
+    {
+      let editSpan = createElement('span');
+      editSpan.innerHTML = '<a href"#" onclick="showLoading();showEditMonitorForm(\'' + monitor.id + '\');"><img src="images/edit.png" alt="Edit Monitor" width="25" /></a>';
+      editcell.appendChild(editSpan);
+    }
 
+    let deletecell = createElement('td', 'boldheader', null);
     // Only show the delete button if a monitor was created using credentials.
     if (null == monitor.createdBy.application.displayName)
     {
@@ -1123,6 +1135,7 @@ function showMonitors(monitors, runs, graphURI) {
             driftcell = createElement('td');
             driftcell.innerHTML = "<img src='images/green.png' width='20' alt='No drift detected' />&nbsp;0 Drift(s) Detected"
           }
+          driftcell.setAttribute('colspan', 2)
           runrow.appendChild(driftcell);
 
           if (null != run.errorDetails && run.errorDetails.length != 0)
