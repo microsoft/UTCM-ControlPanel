@@ -517,10 +517,12 @@ function toggleInfo(elementId)
   if (element.style.visibility == 'hidden')
   {
     element.style.visibility = 'visible';
+    element.style.position = 'relative';
   }
   else
   {
     element.style.visibility = 'hidden';
+    element.style.position = 'absolute';
   }
 }
 
@@ -533,6 +535,7 @@ function showNewMonitorForm(monitor, monitorBaseline) {
   if (null != monitor)
   {
       divBreakdown.style.visibility = 'hidden';
+      divBreakdown.style.position = 'absolute';
       showDetails.innerHTML = "<a id='linkInfo' onclick='toggleInfo(\"divBreakdown\");'><img src='images/info.png' width='25px' alt='Show info' /></a>"
       var countResourceType = countResourcesByType(monitorBaseline);
       var breakdownContent = "<ul>"
