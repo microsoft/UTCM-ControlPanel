@@ -530,9 +530,11 @@ function showNewMonitorForm() {
   descriptionInput.setAttribute('type', 'text');
   descriptionGroup.appendChild(descriptionInput);
 
+  let newLine = createElement('br');
   let configModeGroup = createElement('div', 'form-group mb-2');
   form.appendChild(configModeGroup);  
-  configModeGroup.appendChild(createElement('label', '', 'Configuration Mode: '));
+  configModeGroup.appendChild(createElement('label', '', 'Configuration Mode'));
+  configModeGroup.appendChild(newLine);
   let configurationModeDDL = createElement('select');
   configurationModeDDL.setAttribute('id', 'ddlConfigMode');
   configurationModeDDL.setAttribute('disabled', true)
@@ -545,7 +547,8 @@ function showNewMonitorForm() {
 
   let runScheduleGroup = createElement('div', 'form-group mb-2');
   form.appendChild(runScheduleGroup);  
-  runScheduleGroup.appendChild(createElement('label', '', 'Run Frequency: '));
+  runScheduleGroup.appendChild(createElement('label', '', 'Run Frequency'));
+  runScheduleGroup.appendChild(newLine);
   let runScheduleDDL = createElement('select');
   runScheduleDDL.setAttribute('id', 'ddlRunSchedule');
   runScheduleDDL.setAttribute('disabled', true)
