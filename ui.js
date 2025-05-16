@@ -516,7 +516,11 @@ function toggleInfo(elementId)
 
   if (element.style.visibility == 'hidden')
   {
-    element.style.visibility == 'visible'
+    element.style.visibility = 'visible';
+  }
+  else
+  {
+    element.style.visibility = 'hidden';
   }
 }
 
