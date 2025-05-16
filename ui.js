@@ -605,11 +605,11 @@ function showNewMonitorForm(monitor, monitorBaseline) {
   let createButton = createElement('button', 'btn btn-primary me-2');
   if (null == monitor)
   {
-    createButton.text = 'Create'
+    createButton.innerText = 'Create'
   }
   else
   {
-    createButton.text = 'Update'
+    createButton.innerText = 'Update'
   }
   createButton.setAttribute('type', 'button');
   createButton.setAttribute('onclick', 'if(validateLength(\"mon-displayName\",8)){showLoading();createNewMonitor();}else{alert(\"Display name length needs to be at least 8 characters\");}');
