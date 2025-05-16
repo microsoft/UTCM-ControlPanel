@@ -654,6 +654,7 @@ function showNewMonitorForm(monitor, monitorBaseline) {
   mainContainer.innerHTML = '';
   if (null != monitor)
   {
+    mainContainer.appendChild(showDetails);
     mainContainer.appendChild(divBreakdown);
   }
   mainContainer.appendChild(form);
