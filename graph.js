@@ -91,6 +91,11 @@ async function updateMonitor(monitorId) {
     description: description
   };
 
+  if (document.getElementById('hiddenModified').text == '1')
+  {
+    monitorInfo.baseline = baseline;
+  }
+
   if ('' != parameters)
   {
     monitorInfo.parameters = JSON.parse(parameters)
@@ -101,15 +106,13 @@ async function updateMonitor(monitorId) {
       .api("https://graph.microsoft.com/beta/admin/configurationManagement/configurationMonitors('" + monitorId + "')")
       .header('Content-Type', 'application/json')
       .patch(monitorInfo);
-
-    // Return to the calendar view
-    getMonitors();
   } catch (error) {
     updatePage(Views.error, {
       message: 'Error updating monitor',
       debug: error
     });
   }
+  getMonitors();
 }
 
 async function createNewSnapshot() {
