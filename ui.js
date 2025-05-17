@@ -765,18 +765,23 @@ function showSnapshot(data, graphURI) {
   data.resources = sortedResources;
   var snapshotContent = JSON.stringify(data, null, 4);
 
-  let divCountResources = document.createElement('div')
-  divCountResources.innerHTML = "<strong>This snapshot contains:</strong> " + data.resources.length + " resources&nbsp;<a onclick='showLoading();showReport();'><img src='images/report.png' alt='Generate report' width='25px' /></a>";
-
-  var countResourceType = countResourcesByType(data);
+  let showDetails = document.createElement('div')
   let divBreakdown = document.createElement('div');
+  divBreakdown.setAttribute('id', 'divBreakdown');
+  divBreakdown.style.visibility = 'hidden';
+  divBreakdown.style.position = 'absolute';
+  var countResourceType = countResourcesByType(monitorBaseline);
   var breakdownContent = "<ul>"
+  var totalItems = 0
   for(const resource of Object.keys(countResourceType))
   {
     breakdownContent += "<li>" + resource + " (" + countResourceType[resource] + ")</li>"
+    totalItems += countResourceType[resource];
   }
   breakdownContent +="</ul>"
-  divBreakdown.innerHTML = breakdownContent;
+  showDetails.innerHTML = "This monitor's baseline contains (<strong>" + totalItems + "</strong>) resources&nbsp;"      
+  showDetails.innerHTML += "<a id='linkInfo' onclick='toggleInfo(\"divBreakdown\");'><img src='images/info.png' width='25px' alt='Show info' /></a>"
+  divBreakdown.innerHTML += breakdownContent;
 
   let form = document.createElement('form');
 
@@ -796,6 +801,11 @@ function showSnapshot(data, graphURI) {
   contentGroup.appendChild(contentInput);
 
   mainContainer.innerHTML = '';
+  if (null != monitor)
+  {
+    mainContainer.appendChild(showDetails);
+    mainContainer.appendChild(divBreakdown);
+  }
   mainContainer.appendChild(form);
   showGraphBanner(graphURI, "GET");
   hideLoading();
