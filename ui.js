@@ -645,6 +645,9 @@ function showNewMonitorForm(monitor, monitorBaseline) {
   if (null != monitor)
   {
     parametersInput.value = JSON.stringify(monitor.parameters, null, 4)
+    parametersInput.addEventListener("input", function() {
+      hiddenModifiedFlag.text = '1';
+    });
   }
 
   let createButton = createElement('button', 'btn btn-primary me-2');
@@ -657,7 +660,9 @@ function showNewMonitorForm(monitor, monitorBaseline) {
   else
   {
     createButton.innerText = 'Update'
-    createButton.setAttribute('onclick', 'if(validateLength(\"mon-displayName\",8)){showLoading();updateMonitor(\"' + monitor.id + '\");}else{alert(\"Display name length needs to be at least 8 characters\");}');
+
+    var commandToExecute = 'if(validateLength(\"mon-displayName\",8)){showLoading();updateMonitor(\"' + monitor.id + '\");}else{alert(\"Display name length needs to be at least 8 characters\");}'
+    createButton.setAttribute('onclick', commandToExecute);
   }
   createButton.setAttribute('type', 'button');
   form.appendChild(createButton);
