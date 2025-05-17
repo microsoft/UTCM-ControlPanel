@@ -628,7 +628,7 @@ function showNewMonitorForm(monitor, monitorBaseline) {
     delete monitorBaseline['@odata.context']
     baselineInput.value = JSON.stringify(monitorBaseline, null, 4)
     baselineInput.addEventListener("input", function() {
-      hiddenModifiedFlag.text = '1';
+      hiddenModifiedFlag.innerText = '1';
     });
   }
   form.appendChild(hiddenModifiedFlag);
@@ -646,7 +646,7 @@ function showNewMonitorForm(monitor, monitorBaseline) {
   {
     parametersInput.value = JSON.stringify(monitor.parameters, null, 4)
     parametersInput.addEventListener("input", function() {
-      hiddenModifiedFlag.text = '1';
+      hiddenModifiedFlag.innerText = '1';
     });
   }
 
