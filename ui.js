@@ -770,7 +770,7 @@ function showSnapshot(data, graphURI) {
   divBreakdown.setAttribute('id', 'divBreakdown');
   divBreakdown.style.visibility = 'hidden';
   divBreakdown.style.position = 'absolute';
-  var countResourceType = countResourcesByType(monitorBaseline);
+  var countResourceType = countResourcesByType(data);
   var breakdownContent = "<ul>"
   var totalItems = 0
   for(const resource of Object.keys(countResourceType))
@@ -801,11 +801,8 @@ function showSnapshot(data, graphURI) {
   contentGroup.appendChild(contentInput);
 
   mainContainer.innerHTML = '';
-  if (null != monitor)
-  {
-    mainContainer.appendChild(showDetails);
-    mainContainer.appendChild(divBreakdown);
-  }
+  mainContainer.appendChild(showDetails);
+  mainContainer.appendChild(divBreakdown);
   mainContainer.appendChild(form);
   showGraphBanner(graphURI, "GET");
   hideLoading();
