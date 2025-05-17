@@ -91,7 +91,7 @@ async function updateMonitor(monitorId) {
     description: description
   };
 
-  if (document.getElementById('hiddenModified').innerText == '1')
+  if (document.getElementById('hiddenFlagModified').innerText == '1')
   {
     monitorInfo.baseline = baseline;
   }
