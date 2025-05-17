@@ -618,11 +618,20 @@ function showNewMonitorForm(monitor, monitorBaseline) {
   baselineInput.setAttribute('type', 'text');
   baselineInput.setAttribute('rows', '20');
   baselineGroup.appendChild(baselineInput);
+
+  let hiddenModifiedFlag = document.createElement('input');
+  hiddenModifiedFlag.setAttribute('id', 'hiddenFlagModified');
+  hiddenModifiedFlag.setAttribute('type', 'hidden');
+  hiddenModifiedFlag.innerText = '0';
   if (null != monitorBaseline)
   {
     delete monitorBaseline['@odata.context']
     baselineInput.value = JSON.stringify(monitorBaseline, null, 4)
+    baselineInput.addEventListener("input", function() {
+      hiddenModifiedFlag.text = '1';
+    });
   }
+  form.appendChild(hiddenModifiedFlag);
 
   let parametersGroup = createElement('div', 'form-group mb-2');
   form.appendChild(parametersGroup);
