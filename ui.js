@@ -662,7 +662,8 @@ function showNewMonitorForm(monitor, monitorBaseline) {
     createButton.innerText = 'Update'
 
     var commandToExecute = 'if(validateLength(\"mon-displayName\",8)){showLoading();updateMonitor(\"' + monitor.id + '\");}else{alert(\"Display name length needs to be at least 8 characters\");}'
-    createButton.setAttribute('onclick', commandToExecute);
+    var validateCommand = "var flag = document.getElementById('hiddenFlagModified').innerText; if (flag == '1'){let userResponse = confirm('You have modified the baseline or parameters value. Updating these values will delete all existing monitoring results for the current monitor. Do you want to proceed with the update?'); if (userResponse){" + commandToExecute + "}}";
+    createButton.setAttribute('onclick', validateCommand);
   }
   createButton.setAttribute('type', 'button');
   form.appendChild(createButton);
@@ -686,8 +687,6 @@ function showNewMonitorForm(monitor, monitorBaseline) {
   showGraphBanner("https://graph.microsoft.com/beta/admin/configurationManagement/configurationMonitors/","POST")
   hideLoading();
 }
-
-
 
 function utf8_to_b64( str ) {
   return window.btoa(unescape(encodeURIComponent( str )));
