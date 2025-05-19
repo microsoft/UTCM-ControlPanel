@@ -93,7 +93,7 @@ async function updateMonitor(monitorId) {
 
   if (document.getElementById('hiddenFlagModified').innerText == '1')
   {
-    monitorInfo.baseline = baseline;
+    monitorInfo.baseline = JSON.parse(baseline);
   }
 
   if ('' != parameters)
