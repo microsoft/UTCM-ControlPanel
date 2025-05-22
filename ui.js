@@ -43,6 +43,16 @@ function showAuthenticatedNav(user, view) {
     snapshotNav.appendChild(snapshotLink);
 
     authenticatedNav.appendChild(snapshotNav);
+
+    var feedbackNav = createElement('li', 'nav-item');
+
+    var feedbackLink = createElement('button',
+      `btn btn-link nav-link${view === Views.monitors ? ' active' : '' }`,
+      'Feedback');
+    feedbackLink.setAttribute('href', 'mailto:xtagraphapi@service.microsoft.com?subject=UTCM Feedback');
+    feedbackNav.appendChild(feedbackLink);
+
+    authenticatedNav.appendChild(feedbackNav);
   }
 }
 
