@@ -70,6 +70,17 @@ async function createNewMonitor() {
   }
 }
 
+async function countAllMonitoredResources(){
+var uri = 'https://graph.microsoft.com/beta/admin/configurationManagement/configurationMonitors';
+    let responseMonitors = await graphClient
+      .api(uri)
+      .version('beta')
+      .select('displayName,id,status,createdBy')
+      .orderby('displayName')
+      .top(10)
+      .get();
+}
+
 async function updateMonitor(monitorId) {
 
   // Get the user's input
@@ -166,7 +177,6 @@ async function createNewSnapshot() {
     });
   }
 }
-
 
 async function getMonitors() {
   try {
