@@ -705,7 +705,7 @@ function utf8_to_b64( str ) {
 function validateName(id, length)
 {
   var element = document.getElementById(id)
-  if (element.value.length < length && /^[a-zA-Z0-9\s]+$/.test(element.value))
+  if (element.value.length < length && !/^[a-zA-Z0-9\s]+$/.test(element.value))
   {
     return false;
   }
