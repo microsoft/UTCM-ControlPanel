@@ -24,7 +24,14 @@ async function getUser() {
       // Only get the fields used by the app
       .select('id,displayName,mail,userPrincipalName')
       .get();
-  }
+}
+
+async function getPhoto() {
+    return graphClient
+      .api('/me/photos/48x48/$value')
+      .header('Content-Type', 'image/jpg')
+      .get();
+}
 
 async function createNewMonitor() {
   const user = JSON.parse(sessionStorage.getItem('graphUser'));
