@@ -507,7 +507,7 @@ function showNewSnapshotForm() {
 
   let createButton = createElement('button', 'btn btn-primary me-2', 'Create');
   createButton.setAttribute('type', 'button');
-  createButton.setAttribute('onclick', 'if(validateLength(\"mon-displayName\",8)){showLoading();createNewSnapshot();}else{alert(\"Display name length needs to be at least 8 characters\");}');
+  createButton.setAttribute('onclick', 'if(validateName(\"mon-displayName\",8)){showLoading();createNewSnapshot();}else{alert(\"Display name length needs to be at least 8 characters and can only contain letters, spaces and numbers.\");}');
   form.appendChild(createButton);
 
   let cancelButton = createElement('button', 'btn btn-secondary', 'Cancel');
@@ -665,14 +665,14 @@ function showNewMonitorForm(monitor, monitorBaseline) {
   if (null == monitor)
   {
     createButton.innerText = 'Create'
-    createButton.setAttribute('onclick', 'if(validateLength(\"mon-displayName\",8)){showLoading();createNewMonitor();}else{alert(\"Display name length needs to be at least 8 characters\");}');
+    createButton.setAttribute('onclick', 'if(validateName(\"mon-displayName\",8)){showLoading();createNewMonitor();}else{alert(\"Display name length needs to be at least 8 characters and can only contain letters, spaces and numbers\");}');
   
   }
   else
   {
     createButton.innerText = 'Update'
 
-    var commandToExecute = 'if(validateLength(\"mon-displayName\",8)){showLoading();updateMonitor(\"' + monitor.id + '\");}else{alert(\"Display name length needs to be at least 8 characters\");}'
+    var commandToExecute = 'if(validateName(\"mon-displayName\",8)){showLoading();updateMonitor(\"' + monitor.id + '\");}else{alert(\"Display name length needs to be at least 8 characters and can only contain letters, spaces and numbers.\");}'
     var validateCommand = "var flag = document.getElementById('hiddenFlagModified').innerText; if (flag == '1'){let userResponse = confirm('You have modified the baseline or parameters value. Updating these values will delete all existing monitoring results for the current monitor. Do you want to proceed with the update?'); if (userResponse){" + commandToExecute + "}}";
     createButton.setAttribute('onclick', validateCommand);
   }
@@ -702,10 +702,10 @@ function showNewMonitorForm(monitor, monitorBaseline) {
 function utf8_to_b64( str ) {
   return window.btoa(unescape(encodeURIComponent( str )));
 }
-function validateLength(id, length)
+function validateName(id, length)
 {
   var element = document.getElementById(id)
-  if (element.value.length < length)
+  if (element.value.length < length && /[a-zA-Z0-9\s]/.test(element.value))
   {
     return false;
   }
