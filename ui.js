@@ -71,7 +71,9 @@ function showAccountNav(user) {
 
     let userIcon = createElement('img', 'rounded-circle align-self-center me-2');
     userIcon.style.width = '32px';
-    userIcon.src = sessionStorage.getItem('graphPhoto');
+    var urlCreator = window.URL || window.webkitURL;
+    var imageUrl = urlCreator.createObjectURL(sessionStorage.getItem('graphPhoto'));
+    userIcon.src = imageUrl;
     userIcon.alt = 'user';
     dropdown.appendChild(userIcon);
 
