@@ -27,10 +27,14 @@ async function getUser() {
 }
 
 async function getPhoto() {
+  try
+  {
     return graphClient
       .api('/me/photos/48x48/$value')
       .header('Content-Type', 'image/jpg')
       .get();
+  }
+  catch{}
 }
 
 async function createNewMonitor() {
@@ -193,7 +197,7 @@ async function getMonitors() {
       .version('beta')
       .select('displayName,id,status,createdBy')
       .orderby('displayName')
-      .top(10)
+      .top(100)
       .get();
 
     let responseMonitorRuns = await graphClient
