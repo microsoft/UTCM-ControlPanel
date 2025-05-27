@@ -71,7 +71,15 @@ function showAccountNav(user) {
 
     let userIcon = createElement('img', 'rounded-circle align-self-center me-2');
     userIcon.style.width = '32px';    
-    userIcon.src = sessionStorage.getItem('graphPhoto');
+    var sessionPhoto = sessionStorage.getItem('graphPhoto')
+    if (null == sessionPhoto)
+    {
+      userIcon.src = 'images/utcm.png';
+    }
+    else
+    {
+      userIcon.src = sessionStorage.getItem('graphPhoto');
+    }
     userIcon.alt = 'user';
     dropdown.appendChild(userIcon);
 
