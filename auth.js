@@ -35,9 +35,14 @@ async function signIn() {
       const drifts = await getAllDrifts();
       // Save the profile in session
       sessionStorage.setItem('graphUser', JSON.stringify(user));
-      var urlCreator = window.URL || window.webkitURL;
-      var photoUrl = urlCreator.createObjectURL(photo);
-      sessionStorage.setItem('graphPhoto', photoUrl);
+
+      try
+      {
+        var urlCreator = window.URL || window.webkitURL;
+        var photoUrl = urlCreator.createObjectURL(photo);
+        sessionStorage.setItem('graphPhoto', photoUrl);
+      }
+      catch{}
       sessionStorage.setItem('drifts', JSON.stringify(drifts));
       updatePage(Views.home);
     } catch (error) {
