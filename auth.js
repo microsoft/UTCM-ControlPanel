@@ -31,13 +31,13 @@ async function signIn() {
   
       // Get the user's profile from Graph
       const user = await getUser();
-      const photo = await getPhoto();
       const drifts = await getAllDrifts();
       // Save the profile in session
       sessionStorage.setItem('graphUser', JSON.stringify(user));
 
       try
       {
+        const photo = await getPhoto();
         var urlCreator = window.URL || window.webkitURL;
         var photoUrl = urlCreator.createObjectURL(photo);
         sessionStorage.setItem('graphPhoto', photoUrl);
