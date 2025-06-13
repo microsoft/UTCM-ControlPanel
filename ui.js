@@ -334,6 +334,7 @@ function showNewSnapshotForm() {
         "microsoft.exchange.sharingpolicy",
         "microsoft.exchange.transportconfig",
         "microsoft.exchange.transportrule",
+        "microsoft.entra.application",
         "microsoft.entra.authenticationstrengthpolicy",
         "microsoft.entra.authorizationpolicy",
         "microsoft.entra.conditionalaccesspolicy",
@@ -412,6 +413,14 @@ function showNewSnapshotForm() {
         "microsoft.teams.upgradepolicy",
         "microsoft.teams.tenantdialplan",
         "microsoft.teams.meetingbroadcastconfiguration",
+        "microsoft.teams.audioconferencingpolicy",
+        "microsoft.teams.compliancerecordingpolicy",
+        "microsoft.teams.emergencycallingpolicy",
+        "microsoft.teams.emergencycallroutingpolicy",
+        "microsoft.teams.grouppolicyassignment",
+        "microsoft.teams.onlinevoiceuser",
+        "microsoft.teams.user",
+        "microsoft.teams.callqueue",
         "microsoft.intune.deviceconfigurationidentityprotectionpolicywindows10",
         "microsoft.intune.devicecompliancepolicyandroid",
         "microsoft.intune.deviceconfigurationendpointprotectionpolicywindows10",
@@ -477,6 +486,9 @@ function showNewSnapshotForm() {
         "microsoft.intune.windowsautopilotdeploymentprofileazureadhybridjoined",
         "microsoft.intune.windowsautopilotdeploymentprofileazureadjoined",
         "microsoft.intune.windowsupdateforbusinessfeatureupdateprofilewindows10",
+        "microsoft.intune.appconfigurationpolicy",
+        "microsoft.intune.wificonfigurationpolicyandroidenterpriseworkprofile",
+        "microsoft.intune.settingcatalogasrrulespolicywindows10",
         "microsoft.securityandcompliance.autosensitivitylabelpolicy",
         "microsoft.securityandcompliance.caseholdpolicy",
         "microsoft.securityandcompliance.caseholdrule",
@@ -498,7 +510,9 @@ function showNewSnapshotForm() {
         "microsoft.securityandcompliance.retentioneventtype",
         "microsoft.securityandcompliance.securityfilter",
         "microsoft.securityandcompliance.supervisoryreviewpolicy",
-        "microsoft.securityandcompliance.supervisoryreviewrule"];
+        "microsoft.securityandcompliance.supervisoryreviewrule",
+        "microsoft.securityandcompliance.compliancetag",
+        "microsoft.securityandcompliance.labelpolicy"];
   let resourceDDL = createElement('select');
   resourceDDL.setAttribute('multiple', "true");
   resourceDDL.setAttribute('id', 'mon-resources');
