@@ -1087,7 +1087,7 @@ function showDrifts(drifts, graphURI) {
     tbody.appendChild(driftRow);
 
     let cell1 = createElement('td', null, drift.status);
-    if ($drift.status == 'active')
+    if (drift.status == 'active')
     {
       cell1.style.backgroundColor = 'red'
     }
