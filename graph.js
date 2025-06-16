@@ -244,7 +244,7 @@ async function getMonitorDetails(monitorId) {
 async function getDrifts(monitorId) {
 
   try {
-    var uri = "https://graph.microsoft.com/beta/admin/configurationManagement/configurationDrifts?filter=MonitorId eq '" + monitorId + "'"
+    var uri = "https://graph.microsoft.com/beta/admin/configurationManagement/configurationDrifts?filter=MonitorId eq '" + monitorId + "' and status eq 'Fixed' or status eq 'Active'"
     let responseDrifts = await graphClient
       .api(uri)
       .version('beta')
