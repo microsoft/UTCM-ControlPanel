@@ -624,11 +624,11 @@ function showNewMonitorForm(monitor, monitorBaseline) {
   {
     if (monitor.runAsUTCMServicePrincipal == true)
     {
-      runAsUTCMSPNCheck.addAttribute('checked');
+      runAsUTCMSPNCheck.checked = true;
     }
     else
     {
-      runAsUTCMSPNCheck.removeAttribute('checked');
+      runAsUTCMSPNCheck.checked = false;
     }
   }
 
