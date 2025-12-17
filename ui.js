@@ -614,11 +614,11 @@ function showNewMonitorForm(monitor, monitorBaseline) {
 
   let runAsGroup = createElement('div', 'form-group mb-2');
   form.appendChild(runAsGroup);
-  let runAsUTCMSPNCheck = createElement('input', 'form-control');
+  let runAsUTCMSPNCheck = createElement('input');
   runAsUTCMSPNCheck.setAttribute('id', 'mon-runAsUTCMSPN');
   runAsUTCMSPNCheck.setAttribute('type', 'checkbox');
   runAsUTCMSPNCheck.setAttribute('value', true);
-  runAsGroup.appendChild(createElement('label', '', 'Run as UTCM SPN'));
+  runAsGroup.appendChild(createElement('label', '', 'Run as UTCM SPN: '));
   runAsGroup.appendChild(runAsUTCMSPNCheck)
 
   let newLine1 = createElement('br');
