@@ -578,7 +578,7 @@ function showNewMonitorForm(monitor, monitorBaseline) {
         totalItems += countResourceType[resource];
       }
       breakdownContent +="</ul>"
-      showDetails.innerHTML = "This monitor's baseline contains (<strong>" + totalItems + "</strong>) resources&nbsp;"      
+      showDetails.innerHTML = "This monitor's baseline contains (<strong>" + totalItems + "</strong>) resources&nbsp;"
       showDetails.innerHTML += "<a id='linkInfo' onclick='toggleInfo(\"divBreakdown\");'><img src='images/info.png' width='25px' alt='Show info' /></a>"
       divBreakdown.innerHTML += breakdownContent;
   }
@@ -611,6 +611,15 @@ function showNewMonitorForm(monitor, monitorBaseline) {
   {
     descriptionInput.value = monitor.description
   }
+
+  let runAsGroup = createElement('div', 'form-group mb-2');
+  form.appendChild(runAsGroup);
+  let runAsUTCMSPNCheck = createElement('input', 'form-control');
+  runAsUTCMSPNCheck.setAttribute('id', 'mon-runAsUTCMSPN');
+  runAsUTCMSPNCheck.setAttribute('type', 'checkbox');
+  runAsUTCMSPNCheck.setAttribute('value', true);
+  runAsGroup.appendChild(createElement('label', '', 'Run as UTCM SPN'));
+  runAsGroup.appendChild(runAsUTCMSPNCheck)
 
   let newLine1 = createElement('br');
   let configModeGroup = createElement('div', 'form-group mb-2');
@@ -693,6 +702,7 @@ function showNewMonitorForm(monitor, monitorBaseline) {
   else
   {
     createButton.innerText = 'Update'
+    runAsUTCMSPNCheck.setAttribute('disabled', true);
 
     var commandToExecute = 'if(validateName(\"mon-displayName\",8)){showLoading();updateMonitor(\"' + monitor.id + '\");}else{alert(\"Display name length needs to be at least 8 characters and can only contain letters, spaces and numbers.\");}'
     var validateCommand = "var flag = document.getElementById('hiddenFlagModified').innerText; if (flag == '1'){let userResponse = confirm('You have modified the baseline or parameters value. Updating these values will delete all existing monitoring results for the current monitor. Do you want to proceed with the update?'); if (userResponse){" + commandToExecute + "}}";
