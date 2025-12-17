@@ -620,6 +620,17 @@ function showNewMonitorForm(monitor, monitorBaseline) {
   runAsUTCMSPNCheck.setAttribute('value', true);
   runAsGroup.appendChild(createElement('label', '', 'Run as UTCM SPN &nbsp; '));
   runAsGroup.appendChild(runAsUTCMSPNCheck)
+  if (null != monitor)
+  {
+    if (monitor.runAsUTCMServicePrincipal == true)
+    {
+      runAsUTCMSPNCheck.addAttribute('checked');
+    }
+    else
+    {
+      runAsUTCMSPNCheck.removeAttribute('checked');
+    }
+  }
 
   let newLine1 = createElement('br');
   let configModeGroup = createElement('div', 'form-group mb-2');
