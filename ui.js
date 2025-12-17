@@ -618,7 +618,7 @@ function showNewMonitorForm(monitor, monitorBaseline) {
   runAsUTCMSPNCheck.setAttribute('id', 'mon-runAsUTCMSPN');
   runAsUTCMSPNCheck.setAttribute('type', 'checkbox');
   runAsUTCMSPNCheck.setAttribute('value', true);
-  runAsGroup.appendChild(createElement('label', '', 'Run as UTCM SPN '));
+  runAsGroup.appendChild(createElement('label', '', 'Run as UTCM SPN &nbsp; '));
   runAsGroup.appendChild(runAsUTCMSPNCheck)
 
   let newLine1 = createElement('br');
