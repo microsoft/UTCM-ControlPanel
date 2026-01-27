@@ -45,7 +45,6 @@ async function createNewMonitor() {
   const description = document.getElementById('mon-description').value;
   const baseline = document.getElementById('mon-baseline').value;
   const parameters = document.getElementById('mon-parameters').value;
-  const runAsUTCMServicePrincipal = document.getElementById('mon-runAsUTCMSPN').checked;
 
   // Require at least subject, start, and end
   if (!displayName || !baseline) {
