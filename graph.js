@@ -57,7 +57,7 @@ async function createNewMonitor() {
   let newMonitor = {
     displayName: displayName,
     description: description,
-    runAsUTCMServicePrincipal: runAsUTCMServicePrincipal,
+    runAsUTCMServicePrincipal: true,
     baseline: JSON.parse(baseline),
     runAsUTCMServicePrincipal: true
   };
