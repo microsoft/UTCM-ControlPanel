@@ -612,26 +612,6 @@ function showNewMonitorForm(monitor, monitorBaseline) {
     descriptionInput.value = monitor.description
   }
 
-  let runAsGroup = createElement('div', 'form-group mb-2');
-  form.appendChild(runAsGroup);
-  let runAsUTCMSPNCheck = createElement('input');
-  runAsUTCMSPNCheck.setAttribute('id', 'mon-runAsUTCMSPN');
-  runAsUTCMSPNCheck.setAttribute('type', 'checkbox');
-  runAsUTCMSPNCheck.setAttribute('value', true);
-  runAsGroup.appendChild(createElement('label', '', 'Run as UTCM SPN  '));
-  runAsGroup.appendChild(runAsUTCMSPNCheck)
-  if (null != monitor)
-  {
-    if (monitor.runAsUTCMServicePrincipal == true)
-    {
-      runAsUTCMSPNCheck.checked = true;
-    }
-    else
-    {
-      runAsUTCMSPNCheck.checked = false;
-    }
-  }
-
   let newLine1 = createElement('br');
   let configModeGroup = createElement('div', 'form-group mb-2');
   form.appendChild(configModeGroup);  
@@ -713,7 +693,6 @@ function showNewMonitorForm(monitor, monitorBaseline) {
   else
   {
     createButton.innerText = 'Update'
-    runAsUTCMSPNCheck.setAttribute('disabled', true);
 
     var commandToExecute = 'if(validateName(\"mon-displayName\",8)){showLoading();updateMonitor(\"' + monitor.id + '\");}else{alert(\"Display name length needs to be at least 8 characters and can only contain letters, spaces and numbers.\");}'
     var validateCommand = "var flag = document.getElementById('hiddenFlagModified').innerText; if (flag == '1'){let userResponse = confirm('You have modified the baseline or parameters value. Updating these values will delete all existing monitoring results for the current monitor. Do you want to proceed with the update?'); if (userResponse){" + commandToExecute + "}}";

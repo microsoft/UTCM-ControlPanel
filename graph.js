@@ -59,7 +59,8 @@ async function createNewMonitor() {
     displayName: displayName,
     description: description,
     runAsUTCMServicePrincipal: runAsUTCMServicePrincipal,
-    baseline: JSON.parse(baseline)
+    baseline: JSON.parse(baseline),
+    runAsUTCMServicePrincipal: true
   };
 
   if ('' != parameters)
