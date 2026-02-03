@@ -435,7 +435,6 @@ function showNewSnapshotForm() {
         "microsoft.intune.accountprotectionlocalusergroupmembershippolicy",
         "microsoft.intune.deviceconfigurationwindowsteampolicywindows10",
         "microsoft.intune.deviceconfigurationtrustedcertificatepolicywindows10",
-        "microsoft.intune.devicecleanuprule",
         "microsoft.intune.wificonfigurationpolicyandroidopensourceproject",
         "microsoft.intune.deviceconfigurationpolicyandroidworkprofile",
         "microsoft.intune.windowsinformationprotectionpolicywindows10mdmenrolled",
