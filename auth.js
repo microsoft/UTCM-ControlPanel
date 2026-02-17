@@ -9,11 +9,24 @@ const msalClient = new msal.PublicClientApplication(msalConfig);
 // </authInitSnippet>
 
 // <checkAuthSnippet>
-// Check for an already logged-in user
-const account = msalClient.getActiveAccount();
-if (account) {
-  initializeGraphClient(msalClient, account, msalRequest.scopes);
-}
+// Handle the auth response when the page loads inside a popup or redirect.
+// Without this, the popup doesn't close after login and triggers block_nested_popups.
+msalClient.handleRedirectPromise()
+  .then(function (response) {
+    if (response) {
+      msalClient.setActiveAccount(response.account);
+      initializeGraphClient(msalClient, response.account, msalRequest.scopes);
+    } else {
+      // No redirect response — check for an already logged-in user
+      var account = msalClient.getActiveAccount();
+      if (account) {
+        initializeGraphClient(msalClient, account, msalRequest.scopes);
+      }
+    }
+  })
+  .catch(function (error) {
+    console.error('handleRedirectPromise error:', error);
+  });
 // </checkAuthSnippet>
 
 // <signInSnippet>
