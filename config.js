@@ -3,7 +3,7 @@
 
 const msalConfig = {
   auth: {
-    clientId: '006ad752-04b5-4292-9a9e-8d08668edf31',
+    clientId: '6d351e1e-5cfc-48da-b9d2-ba5f202e6355',
     redirectUri: 'https://123.geile-software.de'
   }
 };
